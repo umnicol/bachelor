@@ -1,0 +1,28 @@
+.navbarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 140px;
+    background-color: #060606;
+    color: white;
+  }
+
+  .navbar-links {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    font-family: 'Exo 2', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-links li {
+    margin-left: 60px;
+  }
+  
+  .navbar-links a {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 19px;
+    transition: all 0.3s ease-in-out;
+  }

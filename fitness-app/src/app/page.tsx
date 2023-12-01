@@ -1,3 +1,4 @@
+import NavBar from '@/components/NavBar/NavBar'
 import Image from 'next/image'
 import styles from './page.module.css'
 
