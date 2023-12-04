@@ -1,8 +1,7 @@
 import Head from 'next/head'
-import SignInForm from '../components/SignInForm/SignInForm'
+import Button from '../components/Button/Button'
 
-
-export default function SignIn() {
+export default function SignUp() {
   return (
     <>
       <Head>
@@ -10,9 +9,8 @@ export default function SignIn() {
         <meta name="description" content="nieco sem" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      
-      <SignInForm/>
 
+<Button label={'Book Now'}/>
     </>
   )
 }

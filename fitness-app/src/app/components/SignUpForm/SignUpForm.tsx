@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import styles from './SignInForm.module.scss';
+
+import { useState } from 'react';
+import styles from './SignUpForm.module.scss';
 import Button from '../Button/Button';
 
 
-const SignInForm: React.FC = () => {
+const SignUpForm: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -14,17 +15,13 @@ const SignInForm: React.FC = () => {
     // Perform authentication logic
     console.log('Username:', username);
     console.log('Password:', password);
-
-    // Clear the form fields after submission
-    setUsername('');
-    setPassword('');
   };
 
   return (
-    <div className={styles.signinformContainer}>
+    <div className={styles.signupformContainer}>
       <form onSubmit={handleSubmit}>
-        <p></p>
-      <h2>Sign in</h2>
+        <p>Step 1 of 3</p>
+      <h2>Create a password to start your membership!</h2>
         <input
           type="text"
           id="username"
@@ -37,23 +34,16 @@ const SignInForm: React.FC = () => {
         <input
           type="password"
           id="password"
-          placeholder='Password'
+          placeholder='Create password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
 
-        <Button label={'Sign In'} />
-
-        <p>
-          Not a member yet?{' '}
-          <span>
-            Sign up NOW
-          </span>
-        </p>
+        <Button label={'Next'} />
       </form>
     </div>
   );
 };
 
-export default SignInForm;
+export default SignUpForm;
