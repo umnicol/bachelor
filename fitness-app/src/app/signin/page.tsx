@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import SignInForm from '../components/SignInForm/SignInForm'
+import SignInForm from '../../components/SignInForm/SignInForm'
+
 
 export default function SignIn() {
   return (
