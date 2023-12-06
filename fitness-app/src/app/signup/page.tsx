@@ -1,5 +1,6 @@
+"use client"
 import Head from 'next/head'
-import Button from '../components/Button/Button'
+import SignUpForm from '../components/SignUpForm/SignUpForm'
 
 export default function SignUp() {
   return (
@@ -10,7 +11,7 @@ export default function SignUp() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-<Button label={'Book Now'}/>
+      <SignUpForm/>
     </>
   )
 }

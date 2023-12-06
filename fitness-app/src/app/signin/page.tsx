@@ -1,5 +1,9 @@
+"use client"
 import Head from 'next/head'
 import SignInForm from '../components/SignInForm/SignInForm'
+import SignUpPlan from '../components/SignUpPlan/SignUpPlan'
+import SignUpMethod from '../components/SignUpMethod/SignUpMethod'
+import SignUpCard from '../components/SignUpCard/SignUpCard'
 
 
 export default function SignIn() {
@@ -12,6 +16,9 @@ export default function SignIn() {
       </Head>
       
       <SignInForm/>
+      <SignUpPlan/>
+      <SignUpMethod/>
+      <SignUpCard/>
 
     </>
   )
