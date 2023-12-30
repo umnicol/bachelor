@@ -1,23 +1,32 @@
-import React, { useState } from 'react';
+// SignUpMethod.tsx
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import styles from './SignUpMethod.module.scss';
 import Button from '../Button/Button';
+import Image from 'next/image';
 
-const SignUpMethod: React.FC = () => {
-    const paymentMethods = [
-        { name: 'Credit Card', image: 'img-credit-card.png' },
-        { name: 'MobilePay', image: 'img-mobilepay.png' },
-        { name: 'PayPal', image: 'img-paypal.png' },
-      ];
+interface SignUpMethodProps {
+  onNextStep: () => void;
+  setSelectedPaymentMethod: Dispatch<SetStateAction<string>>;
+}
 
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>('Credit Card');
+const SignUpMethod: React.FC<SignUpMethodProps> = ({ onNextStep, setSelectedPaymentMethod }) => {
+  const paymentMethods = [
+    { name: 'Credit Card', image: '/img-credit-card.png' },
+    { name: 'MobilePay', image: '/img-mobilepay.png' },
+    { name: 'PayPal', image: '/img-paypal.png' },
+  ];
 
-  const paymentMethodChange = (method: string) => {
-    setSelectedPaymentMethod(method);
-  };
+  const [selectedPaymentMethod, setSelectedPaymentMethodLocal] = useState<string>('Credit Card');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Perform authentication logic
+    console.log('Selected Payment Method:', selectedPaymentMethod);
+    // Notify the parent component about the selected payment method
+    setSelectedPaymentMethod(selectedPaymentMethod);
+  
+
+    // Proceed to the next step
+    onNextStep();
   };
 
   return (
@@ -31,14 +40,14 @@ const SignUpMethod: React.FC = () => {
             <button
               key={index}
               className={`${styles.paymentMethodButton} ${selectedPaymentMethod === method.name ? styles.selectedPaymentMethod : ''}`}
-              onClick={() => paymentMethodChange(method.name)}
+              onClick={() => setSelectedPaymentMethodLocal(method.name)}
             >
-              <img src={method.image} alt={method.name} width={20} height={20}/> {method.name}
+              <Image src={method.image} alt={method.name} width={15} height={15}/> {method.name}
             </button>
           ))}
         </div>
 
-        <Button label={'Next'} />
+        <Button label={'Next'} type="submit" />
       </form>
     </div>
   );

@@ -1,73 +1,107 @@
 import React, { useState } from 'react';
 import styles from './SignUpCard.module.scss';
 import Button from '../Button/Button';
+import firebaseApp from '../../../../firebaseConfig';
+import { getCheckoutUrl } from '@/app/stripePayment';
 
 interface SignUpCardProps {
   onSubmit?: (formData: CardFormData) => void;
+  selectedPlanDetails: { title: string, price: number, duration: 'monthly' | 'yearly' } | null;
+  onComplete?: () => void;
+  onChangePlan?: () => void; 
 }
 
-interface CardFormData {
+export interface CardFormData {
   cardNumber: string;
-  expiration: string;
-  cvv: string;
-  nameOnCard: string;
+  expiryDate: string;
+  cvc: string;
 }
 
-const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit }) => {
+const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, onComplete, onChangePlan }) => {
   const [cardNumber, setCardNumber] = useState<string>('');
-  const [expiration, setExpiration] = useState<string>('');
-  const [cvv, setCVV] = useState<string>('');
-  const [nameOnCard, setNameOnCard] = useState<string>('');
-  const [selectedPlan, setSelectedPlan] = useState<string>('');  // State to store the selected plan
+  const [expiryDate, setExpiryDate] = useState<string>('');
+  const [cvc, setCvc] = useState<string>('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, stateUpdater: React.Dispatch<React.SetStateAction<string>>) => {
-    stateUpdater(e.target.value);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    switch (name) {
+      case 'cardNumber':
+        setCardNumber(value);
+        break;
+      case 'expiryDate':
+        setExpiryDate(value);
+        break;
+      case 'cvc':
+        setCvc(value);
+        break;
+      default:
+        break;
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit({ cardNumber, expiration, cvv, nameOnCard });
+
+    try {
+      onSubmit && onSubmit({
+        cardNumber,
+        expiryDate,
+        cvc,
+      });
+
+      onComplete && onComplete();
+
+      // Assuming you've set up and configured the Firebase extension for Stripe Checkout
+      // Use the getCheckoutUrl function from your stripePayment module
+      const checkoutUrl = await getCheckoutUrl(
+        firebaseApp,
+        selectedPlanDetails?.title || 'FREE',
+        selectedPlanDetails?.duration || 'monthly',
+        {
+          name: '',
+          number: cardNumber,
+          expMonth: parseInt(expiryDate.split('/')[0], 10),
+          expYear: parseInt(expiryDate.split('/')[1], 10),
+          cvc,
+        }
+      );
+
+      console.log(checkoutUrl);
+
+      // ... rest of your code
+    } catch (error) {
+      console.error('Error handling submit:', error);
     }
   };
 
   return (
     <div className={styles.signupcardContainer}>
       <form onSubmit={handleSubmit}>
-        <p>Step 3 of 3</p>
-        <h2>Set up your credit card</h2>
         <input
           type="text"
+          name="cardNumber"
           placeholder="Card Number"
           value={cardNumber}
-          onChange={(e) => handleInputChange(e, setCardNumber)}
+          onChange={handleInputChange}
         />
-        <div className={styles.inlineInputs}>
-            <input
-                type="text"
-                placeholder="Expiration Date"
-                value={expiration}
-                onChange={(e) => handleInputChange(e, setExpiration)}
-            />
-            <input
-                type="text"
-                placeholder="CVV"
-                value={cvv}
-                onChange={(e) => handleInputChange(e, setCVV)}
-            />
-        </div>
+
         <input
           type="text"
-          placeholder="Name on Card"
-          value={nameOnCard}
-          onChange={(e) => handleInputChange(e, setNameOnCard)}
+          name="expiryDate"
+          placeholder="Expiry Date (MM/YY)"
+          value={expiryDate}
+          onChange={handleInputChange}
         />
 
-        <div>
-          <p>Chosen Plan: {selectedPlan}</p>
-        </div>
+        <input
+          type="text"
+          name="cvc"
+          placeholder="CVC"
+          value={cvc}
+          onChange={handleInputChange}
+        />
 
-        <Button label={'Start Membership'} />
+        <Button label={'Start Membership'} onClick={handleSubmit} />
       </form>
     </div>
   );

@@ -16,10 +16,6 @@ export default function SignIn() {
       </Head>
       
       <SignInForm/>
-      <SignUpPlan/>
-      <SignUpMethod/>
-      <SignUpCard/>
-
     </>
   )
 }

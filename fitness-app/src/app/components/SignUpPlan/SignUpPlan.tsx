@@ -1,32 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styles from './SignUpPlan.module.scss';
 import Button from '../Button/Button';
 
-const SignUpPlan: React.FC = () => {
-  const plans = [
-    { title: 'FREE', description: ['lorem ipsum'], monthlyPrice: 'FREE', yearlyPrice: 'FREE' },
-    { title: 'BASIC', description: ['lorem ipsum', 'lorem ipsum'], monthlyPrice: '59DKK', yearlyPrice: '410DKK' },
-    { title: 'PREMIUM', description: ['lorem ipsum', 'lorem ipsum', 'lorem ipsum'], monthlyPrice: '99DKK', yearlyPrice: '690DKK' },
-  ];
+interface SignUpPlanProps {
+  onNextStep: (selectedPlan: string) => void;
+  onSelectPlan: (selectedPlan: string, price: number, duration: 'monthly' | 'yearly') => void;
+}
+
+const SignUpPlan: React.FC<SignUpPlanProps> = ({ onNextStep, onSelectPlan }) => {
+  const plans = useMemo(() => [
+    { title: 'FREE', description: ['lorem ipsum'], monthlyPrice: 0, yearlyPrice: 0 },
+    { title: 'BASIC', description: ['lorem ipsum', 'lorem ipsum'], monthlyPrice: 59, yearlyPrice: 410 },
+    { title: 'PREMIUM', description: ['lorem ipsum', 'lorem ipsum', 'lorem ipsum'], monthlyPrice: 99, yearlyPrice: 690 },
+  ], []);
 
   const [selectedPriceDuration, setSelectedPriceDuration] = useState<'monthly' | 'yearly'>('monthly');
   const [selectedPlan, setSelectedPlan] = useState<string>('PREMIUM');
+
+  useEffect(() => {
+    const defaultPlan = plans.find((plan) => plan.title === selectedPlan);
+    if (defaultPlan) {
+      onSelectPlan(selectedPlan, selectedPriceDuration === 'monthly' ? defaultPlan.monthlyPrice : defaultPlan.yearlyPrice, selectedPriceDuration);
+    }
+  }, [selectedPriceDuration, onSelectPlan, selectedPlan, plans]);
+  
 
   const priceDurationChange = (priceDuration: 'monthly' | 'yearly') => {
     setSelectedPriceDuration(priceDuration);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Use setSelectedPlan to update the selected plan
-    setSelectedPlan(selectedPlan)
-    setSelectedPlan(selectedPlan);
-    console.log(selectedPlan);
-  };
-
   return (
     <div className={styles.signupplanContainer}>
-      <form onSubmit={handleSubmit}>
+      <div>
         <p>Step 2 of 3</p>
         <h2>Choose your plan</h2>
 
@@ -47,15 +52,17 @@ const SignUpPlan: React.FC = () => {
         </div>
 
         {plans.map((plan, index) => (
-          <div key={index} className={`${styles.signupplanColumn} ${index === plans.length - 1 ? styles.lastColumn : ''}`}>
+            <div key={index} className={`${styles.signupplanColumn} ${index === plans.length - 1 ? styles.lastColumn : ''}`}>
             <h3
-            className={`${styles.planTitle} ${selectedPlan === plan.title ? styles.selectedPlan : ''}`}
-            onClick={() => setSelectedPlan(plan.title)}
+              className={`${styles.planTitle} ${selectedPlan === plan.title ? styles.selectedPlan : ''}`}
+              onClick={() => {
+                setSelectedPlan(plan.title);
+                onSelectPlan(plan.title, selectedPriceDuration === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice, selectedPriceDuration);
+              }}
             >
-            {plan.title}
+              {plan.title}
             </h3>
-            <p>{selectedPriceDuration === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice}</p>
-            <ul>
+            <p>{selectedPriceDuration === 'monthly' ? `${plan.monthlyPrice} DKK` : `${plan.yearlyPrice} DKK`}</p>            <ul>
               {plan.description.map((bullet, bulletIndex) => (
                 <li key={bulletIndex}>
                   <span role="img" aria-label="check-mark">
@@ -68,8 +75,8 @@ const SignUpPlan: React.FC = () => {
           </div>
         ))}
 
-        <Button label={'Next'} />
-      </form>
+        <Button label={'Next'} onClick={() => onNextStep(selectedPlan || 'PREMIUM')} />
+      </div>
     </div>
   );
 };

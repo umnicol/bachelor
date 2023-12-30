@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import styles from './SignInForm.module.scss';
 import Button from '../Button/Button';
+import Link from 'next/link';
 
 
 const SignInForm: React.FC = () => {
@@ -49,8 +50,8 @@ const SignInForm: React.FC = () => {
         <p>
           Not a member yet?{' '}
           <span>
-            Sign up NOW
-          </span>
+          <Link href={'/signup'}>Sign up NOW</Link>         
+           </span>
         </p>
       </form>
     </div>

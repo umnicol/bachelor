@@ -2,13 +2,13 @@ import React from 'react';
 import styles from './Button.module.scss';
 
 type ButtonProps = {
-  onClick?: () => void;
+  onClick?: (e: React.FormEvent) => void;
   label: string;
+  type?: "button" | "submit" | "reset"; 
 };
 
 function Button({ 
-    onClick, 
-    label }: ButtonProps) 
+    onClick, label }: ButtonProps) 
     {
   return (
     <button className={styles.button} onClick={onClick}>
