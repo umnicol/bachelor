@@ -1,0 +1,69 @@
+.signupmethodContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+
+    form {
+      width: 700px;
+  
+      h2 {
+        font-family: 'Exo 2', sans-serif;
+        font-weight: 600;
+        font-size: 25px;
+        margin-bottom: 20px;
+        color: #112526;
+      }
+  
+      p {
+        font-family: 'Exo 2', sans-serif;
+        text-transform: uppercase;
+        color: #112526;
+      }
+    }
+  
+    .paymentMethods {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+  
+      p {
+        font-family: 'Exo 2', sans-serif;
+        color: #112526;
+      }
+  
+      .paymentMethodButton {
+        width: 250px;
+        font-weight: 500;
+        text-align: left;
+        background-color: white; /* Set background color to white */
+        border: 1.5px solid rgba(17, 37, 38, 0.30);        /* Set border to 2px solid black */
+        border-radius: 10px;
+        color: #112526;
+        padding: 15px;
+        cursor: pointer;
+        margin-bottom: 15px;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #812F2B;
+          color: white;
+          font-weight: 600;
+          border: 1.5px solid #812F2B;  
+        }
+  
+        &.selectedPaymentMethod {
+          background-color: #C95243;
+          color: white;
+          font-weight: 600;
+          border: none;
+          border: 1.5px solid #C95243;  
+
+        }
+      }
+    }
+  }
+  
