@@ -2,27 +2,36 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 140px;
-    background-color: #060606;
-    color: white;
+    padding: 5px 40px;
+    background-color: white;
   }
 
-  .navbar-links {
-    display: flex;
-    justify-content: flex-end;
-    list-style: none;
+.logo {
+  padding: 3px;
+}
+
+.NavBarButton {
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #C95243;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 550;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
     font-family: 'Exo 2', sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar-links li {
-    margin-left: 60px;
-  }
-  
-  .navbar-links a {
     text-transform: uppercase;
-    font-weight: 400;
-    font-size: 19px;
-    transition: all 0.3s ease-in-out;
+    width: 180px;
+    height: 53px;
+  
+    &:hover,
+    &:focus {
+      background-color: #812F2B;
+    }
   }
+}

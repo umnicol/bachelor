@@ -1,0 +1,39 @@
+.sectioncontainer {
+    background-color: rgb(246, 241, 230);
+     display: flex;
+     flex-direction: column;
+     font-family: 'Exo 2', sans-serif;
+     height: 415px;
+    
+     h2 {
+      position: absolute;
+      top: 1800px;
+       right: 3%;
+       width: 40%;
+        font-size: 2.6rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        text-align: right;
+        color: black;
+     }
+    
+     p {
+      position: absolute;
+       top: 1920px;
+       right: 3%;
+       width: 60%;
+        font-size: 1.1rem;
+        line-height: 1.5;
+        text-align: right;
+        max-width: 500px;
+        margin-bottom: 1rem;
+        color: black;
+        font-family: 'Exo 2', sans-serif;
+     }
+    }
+
+    .sectionimageleft{
+        position: absolute;
+        top: 1800px;
+        left: 0%; 
+    }
