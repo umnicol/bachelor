@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './SignUpCard.module.scss';
 import Button from '../Button/Button';
-import firebaseApp from '../../../../firebaseConfig';
+import { firebaseApp, auth }from '../../../../firebaseConfig';
 import { getCheckoutUrl } from '@/app/stripePayment';
 
 interface SignUpCardProps {

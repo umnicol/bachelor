@@ -1,9 +1,25 @@
 "use client"
-import Head from 'next/head'
-import SignInForm from '../components/SignInForm/SignInForm'
-
+// SignIn.tsx
+import { useState, useEffect } from 'react';
+import Head from 'next/head';
+import SignInForm from '../components/SignInForm/SignInForm';
 
 export default function SignIn() {
+  const [email, setEmail] = useState('');
+
+  const handleSignIn = (enteredEmail: string) => {
+    setEmail(enteredEmail);
+  };
+
+  useEffect(() => {
+    // Extract the email parameter from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlEmail = urlParams.get('email') || '';
+
+    // Set the email state based on the URL parameter
+    setEmail(urlEmail);
+  }, []);
+
   return (
     <>
       <Head>
@@ -11,8 +27,8 @@ export default function SignIn() {
         <meta name="description" content="nieco sem" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      
-      <SignInForm/>
+
+      <SignInForm initialEmail={email} onSignIn={handleSignIn} />
     </>
-  )
+  );
 }

@@ -5,7 +5,6 @@ type ButtonProps = {
   onClick?: (e: React.FormEvent) => void;
   label: string;
   type?: "button" | "submit" | "reset"; 
-  href?: string;
 };
 
 function Button({ 
