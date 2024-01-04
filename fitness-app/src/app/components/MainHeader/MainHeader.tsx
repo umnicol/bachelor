@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import Button from '../Button/Button';
 import styles from './MainHeader.module.scss';
+import Link from 'next/link';
 
 interface MainHeaderProps {
 onClick?: () => void;
@@ -35,8 +36,9 @@ const MainHeader: React.FC<MainHeaderProps> = ({image = '/laurafit-background.jp
         onChange={(e) => setEmail(e.target.value)}
         required
       />
-      <button className={styles.mainheader_button} onClick={onClick}> Sign In
-    </button>
+      <Link href="/signin">
+      <button className={styles.mainheader_button} onClick={onClick}> Sign In</button>
+      </Link>
         </form>
     
     </header>

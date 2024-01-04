@@ -19,8 +19,9 @@ const NavBar: React.FC<NavBarProps> = ({ logo = '/logo-laurafit.png', onClick })
         </Link>
       </div>
       <div className={styles.NavBarButton}>
-      <button className={styles.button} onClick={onClick}> Sign In
-    </button>
+      <Link href="/signin">
+      <button className={styles.button} onClick={onClick}> Sign In </button>
+      </Link>
      </div>
     </nav>
   );
