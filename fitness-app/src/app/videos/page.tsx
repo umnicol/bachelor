@@ -1,6 +1,4 @@
 "use client"
-// pages/videos.tsx
-// pages/videos.tsx
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import VideoCard from '../components/VideoCard/VideoCard';

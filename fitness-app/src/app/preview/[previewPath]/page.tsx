@@ -38,14 +38,12 @@ const PreviewPage: React.FC = () => {
   }, [challengesData, previewPath]);
 
   if (loading || !previewPath) {
-    // Handle loading state or redirect
     return <div>Loading...</div>;
   }
 
   const challenge = challengesData.find((c) => c.previewPath === previewPath);
 
   if (!challenge) {
-    // Handle case where challenge is not found
     return <div>Challenge not found</div>;
   }
 

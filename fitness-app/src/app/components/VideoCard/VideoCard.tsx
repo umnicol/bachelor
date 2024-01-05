@@ -1,4 +1,3 @@
-// components/VideoCard/VideoCard.tsx
 import React from 'react';
 import Image from 'next/image';
 import styles from './VideoCard.module.scss';

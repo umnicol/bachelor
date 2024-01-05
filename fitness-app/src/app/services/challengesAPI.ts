@@ -1,4 +1,3 @@
-// utils/challengesAPI.ts
 import { getFirestore, collection, getDocs, DocumentData } from 'firebase/firestore';
 import { firebaseApp } from '../../../firebaseConfig';
 import { Challenge } from '../preview/[previewPath]/page';
