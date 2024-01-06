@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import VideoCard from '../components/VideoCard/VideoCard';
 import { getChallengesData } from '../services/challengesAPI';
+import styles from './page.module.scss';
 
 interface Challenge {
   title: string;
@@ -14,7 +15,7 @@ const Videos: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getChallengesData() as Challenge[];
+      const data = (await getChallengesData()) as Challenge[];
       setChallengesData(data);
     };
 
@@ -29,9 +30,9 @@ const Videos: React.FC = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div style={{ display: 'flex', overflowX: 'auto', justifyContent: 'center', margin: '-10px' }}>
+      <div className={styles.container}>
         {challengesData.map((challenge, index) => (
-          <div key={index} style={{ minWidth: '300px', margin: '10px' }}>
+          <div key={index} className={styles.videoCardContainer}>
             <VideoCard video={challenge} />
           </div>
         ))}

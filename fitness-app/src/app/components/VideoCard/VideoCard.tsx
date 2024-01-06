@@ -16,6 +16,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
         <Link href={`/preview/${encodeURIComponent(video.previewPath)}`}>
             <div className={styles.previewContainer}>
               <Image src={video.previewPath} alt={video.title} width={300} height={200} className={styles.videoImage} />
+              <div className={styles.overlay}></div>
               <div className={styles.titleOverlay}>{video.title}</div>
             </div>
         </Link>
