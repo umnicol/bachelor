@@ -1,0 +1,114 @@
+.videoInfoLayout {
+    display: flex;
+    margin-bottom: 50px;
+  }
+  
+  .infoContainer {
+    width: 50%;
+    background-color: #f7f6f2;
+    border-radius: 10px;
+    padding-left: 120px;
+    padding-right: 120px;
+    padding-top: 50px;
+    margin-left: 120px;
+    margin-right: 80px;
+  
+    h2 {
+      font-family: 'obvia-narrow', sans-serif;
+      font-weight: 900;
+      font-size: 30px;
+      margin-bottom: 50px;
+      color: #112526;
+    }
+  
+    h3 {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 22px;
+      color: #112526;
+    }
+  
+    p {
+      font-family: 'Exo 2', sans-serif;
+      color: #112526;
+      font-size: 20px;
+      font-weight: 300;
+      margin-bottom: 50px;
+    }
+  }
+  
+  .recipeContainer {
+    width: 50%;
+    background-color: #A9E3F6;
+    padding-left: 120px;
+    padding-right: 120px;
+    padding-top: 50px;
+    margin-right: 80px;
+    display: flex;
+    flex-direction: column;
+    
+    h2 {
+      font-family: 'obvia-narrow', sans-serif;
+      font-weight: 900;
+      font-size: 30px;
+      color: #112526;
+      text-transform: uppercase;
+    }
+  
+    p {
+      font-family: 'Exo 2', sans-serif;
+      color: #112526;
+      font-size: 20px;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+  
+    h4 {
+      font-family: 'obvia-narrow', sans-serif;
+      font-weight: 900;
+      font-size: 30px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+  
+    .hungryForMore {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: auto;
+      margin-bottom: 30px;
+      h2 {
+        font-family: 'obvia-narrow', sans-serif;
+        font-weight: 900;
+        font-size: 30px;
+        color: #112526;
+        text-transform: uppercase;
+        margin-right: 10px; 
+      }
+      svg {
+        font-size: 20px; 
+        color: #112526;
+      }
+    }
+  }
+  
+
+  .socialIcons {
+    display: flex;
+    gap: 30px; 
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+  
+  .icon {
+    font-size: 40px; 
+  }
+  
+  .buttonContainer {
+    text-align: center; 
+    margin-bottom: 50px;
+  }
+
+  
+  

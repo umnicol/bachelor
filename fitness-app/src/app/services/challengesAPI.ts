@@ -1,6 +1,6 @@
 import { getFirestore, collection, getDocs, DocumentData } from 'firebase/firestore';
 import { firebaseApp } from '../../../firebaseConfig';
-import { Challenge } from '../preview/[previewPath]/page';
+import { Challenge } from '../interfaces/challengeInterface';
 
 const firestore = getFirestore(firebaseApp);
 

@@ -6,8 +6,8 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { firebaseApp } from '../../../../firebaseConfig';
 
 interface SignInFormProps {
-  initialEmail: string;
-  onSignIn: (enteredEmail: string) => void;
+  initialEmail?: string;
+  onSignIn: (enteredEmail: string, enteredPassword: string) => void;
 }
 
 const SignInForm: React.FC<SignInFormProps> = ({ initialEmail, onSignIn }) => {
@@ -26,10 +26,17 @@ const SignInForm: React.FC<SignInFormProps> = ({ initialEmail, onSignIn }) => {
       setUsername('');
       setPassword('');
       // Pass the entered email back to the parent component (SignIn)
-      onSignIn(username);
-      window.location.href = '/signup';
+      onSignIn(username, password);
     } catch (error) {
-      // Handle errors
+      console.error('Firebase Auth Error:', error);
+      switch (error.code) {
+        case 'auth/invalid-credential':
+          setError('Wrong credentials. Please check your email and password.');
+          break;
+        default:
+          setError('An error occurred during sign-in. Please try again later.');
+          break;
+    }
     }
   };
 

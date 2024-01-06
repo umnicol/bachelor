@@ -3,16 +3,11 @@ import Image from 'next/image';
 import styles from './ChallengePreview.module.scss';
 import { getChallengesData } from '../../services/challengesAPI';
 import Button from '../Button/Button';
+import { Challenge } from '@/app/interfaces/challengeInterface';
 
 interface ChallengePreviewProps {
-  video: {
-    title: string;
-    previewPath: string;
-    numberOfVideos: number;
-    videoLength: string;
-    fitnessLevel: string;
-  };
-}
+    video: Challenge;
+  }
 
 const ChallengePreview: React.FC<ChallengePreviewProps> = ({ video }) => {
   const [imageUrl, setImageUrl] = React.useState<string | null>(null);
@@ -26,7 +21,7 @@ const ChallengePreview: React.FC<ChallengePreviewProps> = ({ video }) => {
         if (matchingChallenge) {
           console.log('Matching challenge:', matchingChallenge);
 
-          // Assuming previewPath contains the image URL
+          //previewPath contains the image URL
           setImageUrl(matchingChallenge.previewPath);
         } else {
           console.error(`No matching challenge found for previewPath: ${video.previewPath}`);

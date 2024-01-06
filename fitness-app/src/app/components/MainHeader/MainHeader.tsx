@@ -32,9 +32,9 @@ const MainHeader: React.FC<MainHeaderProps> = ({ image = '/laurafit-background.j
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <Link href={`/signin?email=${encodeURIComponent(email)}`}>
+        <Link href={`/signin?email=${encodeURIComponent(email)}`} passHref>
             <button className={styles.mainheader_button} type="submit">
-              Sign In
+             Sign In
             </button>
         </Link>
       </form>

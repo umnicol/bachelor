@@ -1,16 +1,31 @@
 .navbarContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 40px;
-    background-color: white;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 40px;
+  background-color: white;
+}
 
 .logo {
   padding: 3px;
 }
 
 .NavBarButton {
+  a {
+    font-family: 'obvia-narrow', sans-serif;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #112526;
+    font-weight: 700;
+    text-decoration: none;
+    margin-right: 50px;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #812F2B;
+    }
+  }
+
   .button {
     display: inline-block;
     padding: 10px 20px;

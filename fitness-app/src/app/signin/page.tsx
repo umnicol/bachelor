@@ -1,22 +1,31 @@
 "use client"
-// SignIn.tsx
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import SignInForm from '../components/SignInForm/SignInForm';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth, firebaseApp } from '../../../firebaseConfig';
+
+const firebaseAuth = getAuth(firebaseApp);
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
 
-  const handleSignIn = (enteredEmail: string) => {
-    setEmail(enteredEmail);
+  const handleSignIn = async (enteredEmail: string, enteredPassword: string) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(firebaseAuth, enteredEmail, enteredPassword);
+      // User signed in successfully
+      const user = userCredential.user;
+      setEmail(enteredEmail);
+      window.location.href = '/videos';
+    } catch (error) {
+      console.error('Error during sign-in:', error.message);
+    }
   };
 
   useEffect(() => {
-    // Extract the email parameter from the URL
+    // Extracting email from URL
     const urlParams = new URLSearchParams(window.location.search);
     const urlEmail = urlParams.get('email') || '';
-
-    // Set the email state based on the URL parameter
     setEmail(urlEmail);
   }, []);
 

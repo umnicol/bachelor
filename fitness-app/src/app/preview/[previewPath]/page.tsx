@@ -3,19 +3,16 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import ChallengePreview from '../../components/ChallengePreview/ChallengePreview';
 import { getChallengesData } from '../../services/challengesAPI';
-
-export interface Challenge {
-    title: string;
-    previewPath: string;
-    numberOfVideos: number;
-    videoLength: string;
-    fitnessLevel: string;
-  }
+import { Challenge } from '@/app/interfaces/challengeInterface';
+import ChallengeInformation from '@/app/components/ChallengeInformation/ChallengeInformation';
+import { auth } from '../../../../firebaseConfig';
+import NavBar from '../../components/NavBar/NavBar'; // Import NavBar component
 
 const PreviewPage: React.FC = () => {
   const [challengesData, setChallengesData] = useState<Challenge[]>([]);
   const [loading, setLoading] = useState(true);
   const [previewPath, setPreviewPath] = useState<string | null>(null);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +26,14 @@ const PreviewPage: React.FC = () => {
     };
 
     fetchData();
+
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   useEffect(() => {
@@ -36,6 +41,10 @@ const PreviewPage: React.FC = () => {
     const lastSegment = decodeURIComponent(pathSegments[pathSegments.length - 1]);
     setPreviewPath(lastSegment);
   }, [challengesData, previewPath]);
+
+  if (!user) {
+    return <p>Please sign in to view this challenge.</p>;
+  }
 
   if (loading || !previewPath) {
     return <div>Loading...</div>;
@@ -54,11 +63,9 @@ const PreviewPage: React.FC = () => {
         <meta name="description" content="write something here" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-
-      <div>
-        <h2>Challenge Preview</h2>
-        <ChallengePreview video={challenge} />
-      </div>
+      <NavBar isLoggedIn={!!user} />
+      <ChallengePreview video={challenge} />
+      <ChallengeInformation video={challenge} />
     </>
   );
 };
