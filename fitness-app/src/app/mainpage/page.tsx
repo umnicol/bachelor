@@ -1,14 +1,38 @@
 "use client"
-import Head from 'next/head'
-import CarrouselSection from '../components/CarrouselSection/CarrouselSection'
-import CategorySection from '../components/CategorySection/CategorySection'
-import FollowUs from '../components/FollowUs/FollowUs'
-import HeaderMainPage from '../components/HeaderMainPage/HeaderMainPage'
-import MotivationSection from '../components/MotivationSection/MotivationSection'
-import NavBar from '../components/NavBar/NavBar'
-import RecipeSection from '../components/RecipesSection/RecipeSection'
+import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
+import NavBar from '../components/NavBar/NavBar';
+import HeaderMainPage from '../components/HeaderMainPage/HeaderMainPage';
+import CarrouselSection from '../components/CarrouselSection/CarrouselSection';
+import CategorySection from '../components/CategorySection/CategorySection';
+import RecipeSection from '../components/RecipesSection/RecipeSection';
+import MotivationSection from '../components/MotivationSection/MotivationSection';
+import FollowUs from '../components/FollowUs/FollowUs';
+import { auth } from '../../../firebaseConfig';
 
-export default function SignUp() {
+const MainPage: React.FC = () => {
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+      setLoading(false);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!user) {
+    return <p>Please sign in to access the main page.</p>;
+  }
+
   return (
     <>
       <Head>
@@ -24,5 +48,7 @@ export default function SignUp() {
       <MotivationSection imageUrl={'/progresspic.png'}/>
       <FollowUs imageUrl={'/socialmedia.png'}/>
     </>
-  )
+  );
 }
+
+export default MainPage;

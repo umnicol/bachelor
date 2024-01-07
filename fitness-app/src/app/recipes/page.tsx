@@ -11,11 +11,13 @@ import RecipeCard from '../components/RecipeCard/RecipeCard';
 const Recipes: React.FC = () => {
   const [recipesData, setRecipesData] = useState<Recipe[]>([]);
   const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = (await getRecipesData()) as Recipe[];
       setRecipesData(data);
+      setLoading(false);
     };
 
     fetchData();
@@ -28,6 +30,10 @@ const Recipes: React.FC = () => {
       unsubscribe();
     };
   }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   if (!user) {
     return <p>Please sign in to access videos.</p>;
