@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link';
 import React, { useState } from 'react';
 import styles from './CarrouselSection.module.scss';
 
@@ -26,7 +27,10 @@ const CarrouselSection: React.FC = () => {
     <h2>EXPLORE MORE CHALLENGES</h2>
     <div className={styles.carrousel}>
       <button onClick={goToPrevious}>Previous</button>
-      <img src={images[currentIndex]} alt={`Image ${currentIndex}`} />
+      <Link href="/videos">
+        <img src={images[currentIndex]} alt={`Image ${currentIndex}`} /> 
+     </Link>
+     
       <img src={'/Group22.png'}/>
       <img src={'/Group23.png'}/>
       <img src={'/Group24.png'}/>

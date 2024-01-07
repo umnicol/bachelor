@@ -1,14 +1,14 @@
 .sectioncontainer {
-    background-color: rgb(246, 241, 230);
+    background-color: #F7F6F2;
      display: flex;
      flex-direction: column;
      font-family: 'Exo 2', sans-serif;
-     height: 415px;
+     height: 490px;
     
      h2 {
       position: absolute;
-      top: 120px;
-       right: 3%;
+      top: 1800px;
+       right: 5%;
        width: 40%;
         font-size: 2.8rem;
         font-weight: bold;
@@ -19,8 +19,8 @@
     
      p {
       position: absolute;
-       top: 260px;
-       right: 3%;
+       top: 1940px;
+       right: 5%;
        width: 60%;
         font-size: 1.1rem;
         font-weight: 300;
@@ -35,6 +35,6 @@
 
     .sectionimageleft{
         position: absolute;
-        top: 65px;
+        top: 1760px;
         left: 0%; 
     }

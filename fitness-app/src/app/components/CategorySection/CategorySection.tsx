@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import styles from './CategorySection.module.scss';
 
@@ -20,10 +21,18 @@ const CategorySection: React.FC = () => {
     <h2>OR FIND YOUR TRAINING STYLE</h2>
     <p>and all challenges related to it</p>
     <div className={styles.categorycontainer}>
-      <Box label="CARDIO" />
-      <Box label="STRENGHT" />
-      <Box label="HIIT" />
-      <Box label="STRETCH" />
+    <Link href="/videos">
+       <Box label="CARDIO" />    
+     </Link>
+     <Link href="/videos">
+       <Box label="STRENGHT" />    
+     </Link>
+     <Link href="/videos">
+       <Box label="HIIT" />    
+     </Link>
+     <Link href="/videos">
+       <Box label="STRETCH" />    
+     </Link>
     </div></div>
   );
 };

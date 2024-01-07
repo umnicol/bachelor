@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import styles from './RecipeSection.module.scss';
 
@@ -14,7 +15,10 @@ const RecipeSection: React.FC<RecipeSectionProps> = ({ imageUrl}) => {
         </div>
         <div className={styles.recipesbuttons}>
         <button> NUTRITION CALCULATOR</button>
-         <button> SEE RECIPES</button>
+        <Link href="/recipes">
+        <button> SEE RECIPES</button>
+          </Link>
+         
         </div>
         </div>
       );

@@ -9,7 +9,7 @@ interface SectionLeftProps {
 const SectionLeft: FC<SectionLeftProps> = ({ imageSrc}) => {
  return (
     <div className={styles.sectioncontainer}>
-      <Image className={styles.sectionimageleft} src={imageSrc} alt="Section image left" width={680} height={430} />
+      <Image className={styles.sectionimageleft} src={imageSrc} alt="Section image left" width={650} height={420} />
       <h2>EVERYTHING YOU NEED <br></br>
         AT ONE PLACE
       </h2>

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import styles from './PricingPlan.module.scss';
 
@@ -40,7 +41,10 @@ const PricingPlan: React.FC = () => {
               <li key={idx}>{feature}</li>
             ))}
           </ul>
+          <Link href="/signin">
           <button>JOIN NOW</button>
+     </Link>
+         
         </div>
       ))}
     </div>

@@ -10,6 +10,7 @@ import NavBar from './components/NavBar/NavBar'
 import PricingPlan from './components/PricingPlan/PricingPlan'
 import RecipeSection from './components/RecipesSection/RecipeSection'
 import SectionLeft from './components/SectionLeft/SectionLeft'
+import SectionRight from './components/SectionRight/SectionRight'
 import SubscriptionSection from './components/SubscriptionSection/SubscriptionSection'
 
 export default function Home() {
@@ -22,6 +23,10 @@ export default function Home() {
       </Head>
       <NavBar isLoggedIn={false}/>
       <MainHeader/>
+      <SubscriptionSection imageSrc={'/weights.png'}/>
+      <SectionRight imageSrc={'/imageright.png'}/>
+      <SectionLeft imageSrc={'/imageleft.png'}/>
+      <PricingPlan/>
     </>
   )
 }

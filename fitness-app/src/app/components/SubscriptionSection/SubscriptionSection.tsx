@@ -9,7 +9,7 @@ interface SubscriptionSectionProps {
  const SubscriptionSection: FC<SubscriptionSectionProps> = ({ imageSrc}) => {
   return (
     <div className={styles.subscriptionsection}>
-      <Image className={styles.subscriptionimage} src={imageSrc} alt="Subscription image" width={540} height={500} />
+      <Image className={styles.subscriptionimage} src={imageSrc} alt="Subscription image" width={480} height={440} />
       <h2>SUBSCRIPTION YOUR BODY <br></br>
         WILL THANK YOU FOR
       </h2>

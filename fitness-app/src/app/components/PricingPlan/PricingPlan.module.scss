@@ -1,14 +1,19 @@
 .pricingtitle{
     text-align: center;
     font-family: 'Exo 2', sans-serif;
+    background-color:#F7F6F2 ;
+    padding-top: 10px;
+    padding-bottom: 60px;
 
 h2 {
-    font-size: 3rem;
-    margin-bottom: 10px;
+    font-size: 3.2rem;
+    margin-bottom: 30px;
+    color: #C95243;
 }
 p{
-    font-size: 1.3rem;
-    margin-bottom: 50px;
+    font-size: 1.4rem;
+    margin-bottom: 80px;
+    text-transform: uppercase;
 }
 }
 
@@ -27,7 +32,7 @@ p{
       border-radius: 8px;
       padding: 40px;
       width: 250px;
-      height: 340px;
+      height: 360px;
 
       h2 {
         font-size: 1.8rem;

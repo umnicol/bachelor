@@ -25,7 +25,7 @@ const NavBar: React.FC<NavBarProps> = ({ logo = '/logo-laurafit.png',  isLoggedI
     <nav className={styles.navbarContainer}>
       <div className={styles.logo}>
         {isLoggedIn ? (
-          <Link href="/dashboard">
+          <Link href="/mainpage">
               <Image src={logo} alt="LauraFit Logo" height={55} width={135} />
           </Link>
         ) : (
