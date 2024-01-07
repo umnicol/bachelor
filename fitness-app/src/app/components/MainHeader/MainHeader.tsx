@@ -20,7 +20,7 @@ const MainHeader: React.FC<MainHeaderProps> = ({ image = '/laurafit-background.j
 
   return (
     <header className={styles.header} style={{ backgroundImage: `url(${image})` }}>
-      <h2 className={styles.mainheader_h2}>LET'S REACH YOUR GOALS TOGETHER</h2>
+      <h2 className={styles.mainheader_h2}>LET'S REACH YOUR GOALS <br></br> TOGETHER</h2>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Enter your email to become a new member</label>
