@@ -6,6 +6,7 @@ import { Challenge } from '@/app/interfaces/challengeInterface';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebook, faTiktok } from '@fortawesome/free-brands-svg-icons';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 
 interface ChallengeInformationProps {
   video: Challenge;
@@ -59,8 +60,10 @@ const ChallengeInformation: React.FC<ChallengeInformationProps> = ({ video }) =>
         </div>
 
         <div className={styles.hungryForMore}>
+        <Link href="/recipes">
           <h2>hungry for more?</h2> 
-          <FontAwesomeIcon icon={faArrowRight} />        
+          <FontAwesomeIcon icon={faArrowRight} /> 
+        </Link>       
         </div>
       </div>
     </div>

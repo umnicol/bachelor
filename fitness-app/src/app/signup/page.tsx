@@ -1,7 +1,6 @@
 "use client"
 import Head from 'next/head'
 import SignUpForm from '../components/SignUpForm/SignUpForm'
-import { Elements } from '@stripe/react-stripe-js'
 
 export default function SignUp() {
   return (

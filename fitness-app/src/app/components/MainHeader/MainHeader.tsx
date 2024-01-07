@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 interface MainHeaderProps {
   image?: string;
-  onSignIn: (enteredEmail: string) => void;
+  onSignIn?: (enteredEmail: string) => void;
 }
 
 const MainHeader: React.FC<MainHeaderProps> = ({ image = '/laurafit-background.jpg', onSignIn }) => {
@@ -13,7 +13,9 @@ const MainHeader: React.FC<MainHeaderProps> = ({ image = '/laurafit-background.j
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSignIn(email);
+    if (onSignIn) {
+      onSignIn(email);
+    }
   };
 
   return (
