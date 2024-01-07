@@ -15,11 +15,13 @@ interface Challenge {
 const Videos: React.FC = () => {
   const [challengesData, setChallengesData] = useState<Challenge[]>([]);
   const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = (await getChallengesData()) as Challenge[];
       setChallengesData(data);
+      setLoading(false);
     };
 
     fetchData();
@@ -32,6 +34,10 @@ const Videos: React.FC = () => {
       unsubscribe();
     };
   }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   if (!user) {
     return <p>Please sign in to access videos.</p>;
