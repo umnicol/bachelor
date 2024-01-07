@@ -14,7 +14,7 @@ interface SubscriptionSectionProps {
         WILL THANK YOU FOR
       </h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+        We offer very accessible and price-friendly subscription that allows you to work on you dream physique from home while having busy lifestyle.
       </p>
     </div>
  );

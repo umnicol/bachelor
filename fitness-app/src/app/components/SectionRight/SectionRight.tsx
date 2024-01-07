@@ -14,7 +14,7 @@ const SectionRight: FC<SectionRightProps> = ({ imageSrc}) => {
         PROFFESIONAL
       </h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+        You will get access to guides, videos and recipes created by a certified trainer and a world champion in Bikini Fitness. There are no exuses left!
       </p>
     </div>
  );

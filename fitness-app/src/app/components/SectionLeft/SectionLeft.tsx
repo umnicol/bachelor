@@ -14,7 +14,7 @@ const SectionLeft: FC<SectionLeftProps> = ({ imageSrc}) => {
         AT ONE PLACE
       </h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+        Are you busy and want to fit in a quick workout? Or do you need inspiration for your lunch or dinner? We have everyrhing and even more. Try it out!
       </p>
     </div>
  );
