@@ -6,9 +6,9 @@ import { getChallengesData } from '../../services/challengesAPI';
 import { Challenge } from '@/app/interfaces/challengeInterface';
 import ChallengeInformation from '@/app/components/ChallengeInformation/ChallengeInformation';
 import { auth } from '../../../../firebaseConfig';
-import NavBar from '../../components/NavBar/NavBar'; // Import NavBar component
+import NavBar from '../../components/NavBar/NavBar';
 
-const PreviewPage: React.FC = () => {
+const Preview: React.FC = () => {
   const [challengesData, setChallengesData] = useState<Challenge[]>([]);
   const [loading, setLoading] = useState(true);
   const [previewPath, setPreviewPath] = useState<string | null>(null);
@@ -60,7 +60,7 @@ const PreviewPage: React.FC = () => {
     <>
       <Head>
         <title>LauraFit - {challenge.title}</title>
-        <meta name="description" content="write something here" />
+        <meta name="description" content="Preview of a fitness challenge created by Laurafit" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <NavBar isLoggedIn={!!user} />
@@ -70,4 +70,4 @@ const PreviewPage: React.FC = () => {
   );
 };
 
-export default PreviewPage;
+export default Preview;

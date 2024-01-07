@@ -1,5 +1,4 @@
 "use client"
-// MainHeader.tsx
 import React, { useState } from 'react';
 import styles from './MainHeader.module.scss';
 import Link from 'next/link';

@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import Button from '../Button/Button';
 import styles from './NavBar.module.scss';
 import Link from 'next/link';
 import { signOut } from 'firebase/auth'; 
@@ -8,12 +7,11 @@ import { auth } from '../../../../firebaseConfig';
 
 type NavBarProps = {
   logo?: string;
-  onClick?: () => void;
   label?: string;
   isLoggedIn: boolean;
 };
 
-const NavBar: React.FC<NavBarProps> = ({ logo = '/logo-laurafit.png', onClick, isLoggedIn }) => {
+const NavBar: React.FC<NavBarProps> = ({ logo = '/logo-laurafit.png',  isLoggedIn }) => {
   const handleLogout = async () => {
     try {
       await signOut(auth);

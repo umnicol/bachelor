@@ -33,7 +33,7 @@ export default function SignIn() {
     <>
       <Head>
         <title>Laurafit - Sign In</title>
-        <meta name="description" content="nieco sem" />
+        <meta name="description" content="Sign in into the Laurafit platform" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 

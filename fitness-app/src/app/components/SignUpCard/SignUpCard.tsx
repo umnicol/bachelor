@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import styles from './SignUpCard.module.scss';
 import Button from '../Button/Button';
-import { firebaseApp, auth }from '../../../../firebaseConfig';
+import { firebaseApp, auth } from '../../../../firebaseConfig';
 import { getCheckoutUrl } from '@/app/stripePayment';
 
 interface SignUpCardProps {
   onSubmit?: (formData: CardFormData) => void;
-  selectedPlanDetails: { title: string, price: number, duration: 'monthly' | 'yearly' } | null;
+  selectedPlanDetails: { title: string; price: number; duration: 'monthly' | 'yearly' } | null;
   onComplete?: () => void;
-  onChangePlan?: () => void; 
+  onChangePlan?: () => void;
 }
 
 export interface CardFormData {
+  name: string;
   cardNumber: string;
   expiryDate: string;
   cvc: string;
 }
 
 const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, onComplete, onChangePlan }) => {
+  const [name, setName] = useState<string>('');
   const [cardNumber, setCardNumber] = useState<string>('');
   const [expiryDate, setExpiryDate] = useState<string>('');
   const [cvc, setCvc] = useState<string>('');
@@ -25,14 +27,22 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     switch (name) {
+      case 'name':
+        setName(value);
+        break;
       case 'cardNumber':
         setCardNumber(value);
         break;
       case 'expiryDate':
-        setExpiryDate(value);
+        const cleanedValue = value.replace(/\D/g, '');
+        // Format as MM/YY
+        const formattedValue =
+          cleanedValue.length >= 2 ? `${cleanedValue.slice(0, 2)}/${cleanedValue.slice(2, 4)}` : cleanedValue;
+
+        setExpiryDate(formattedValue);
         break;
       case 'cvc':
-        setCvc(value);
+        setCvc(value.replace(/\D/g, '').slice(0, 3));
         break;
       default:
         break;
@@ -43,22 +53,22 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
     e.preventDefault();
 
     try {
-      onSubmit && onSubmit({
-        cardNumber,
-        expiryDate,
-        cvc,
-      });
+      onSubmit &&
+        onSubmit({
+          name,
+          cardNumber,
+          expiryDate,
+          cvc,
+        });
 
       onComplete && onComplete();
 
-      // Assuming you've set up and configured the Firebase extension for Stripe Checkout
-      // Use the getCheckoutUrl function from your stripePayment module
       const checkoutUrl = await getCheckoutUrl(
         firebaseApp,
         selectedPlanDetails?.title || 'FREE',
         selectedPlanDetails?.duration || 'monthly',
         {
-          name: '',
+          name,
           number: cardNumber,
           expMonth: parseInt(expiryDate.split('/')[0], 10),
           expYear: parseInt(expiryDate.split('/')[1], 10),
@@ -67,8 +77,7 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
       );
 
       console.log(checkoutUrl);
-
-      // ... rest of your code
+      window.location.href = '/videos';
     } catch (error) {
       console.error('Error handling submit:', error);
     }
@@ -77,6 +86,14 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
   return (
     <div className={styles.signupcardContainer}>
       <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Name on Card"
+          value={name}
+          onChange={handleInputChange}
+        />
+
         <input
           type="text"
           name="cardNumber"
