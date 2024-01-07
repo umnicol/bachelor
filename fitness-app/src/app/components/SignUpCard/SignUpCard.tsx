@@ -65,7 +65,7 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
 
       const checkoutUrl = await getCheckoutUrl(
         firebaseApp,
-        selectedPlanDetails?.title || 'FREE',
+        selectedPlanDetails?.title || 'PREMIUM',
         selectedPlanDetails?.duration || 'monthly',
         {
           name,
@@ -77,7 +77,7 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
       );
 
       console.log(checkoutUrl);
-      window.location.href = '/videos';
+      window.location.href = '/mainpage';
     } catch (error) {
       console.error('Error handling submit:', error);
     }

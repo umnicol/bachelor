@@ -16,7 +16,7 @@ export default function SignIn() {
       // User signed in successfully
       const user = userCredential.user;
       setEmail(enteredEmail);
-      window.location.href = '/videos';
+      window.location.href = '/mainpage';
     } catch (error) {
       console.error('Error during sign-in:', error.message);
     }
