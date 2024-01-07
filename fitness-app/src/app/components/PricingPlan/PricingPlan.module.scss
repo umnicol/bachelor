@@ -1,0 +1,80 @@
+.pricingtitle{
+    text-align: center;
+    font-family: 'Exo 2', sans-serif;
+
+h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+p{
+    font-size: 1.3rem;
+    margin-bottom: 50px;
+}
+}
+
+.pricingplans {
+    display: flex;
+    justify-content: space-around;
+    padding-left: 150px;
+    padding-right: 150px;
+    margin-top: 20px;
+    font-family: 'Exo 2', sans-serif;
+
+    .pricingplan {
+      border: 1px solid #ccc;
+      box-shadow: 5px 0px 50px 10px rgba(243, 191, 124, 0.267);
+      justify-content: center;
+      border-radius: 8px;
+      padding: 40px;
+      width: 250px;
+      height: 340px;
+
+      h2 {
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 10px;
+    
+      }
+  
+      p {
+        text-align: center;
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+
+      }
+  
+      ul {
+        text-align: center;
+        list-style-type: none;
+       padding: 0;
+
+        li {
+        text-align: center;
+        margin-bottom: 15px;
+        }
+      }
+  
+      button {
+    display: inline-block;
+    margin-top: 50px;
+    background-color: #C95243;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Exo 2', sans-serif;
+    width: 150px;
+    height: 50px;
+  
+    &:hover,
+    &:focus {
+      background-color: #812F2B;
+        }
+      }
+    }
+  }
+  

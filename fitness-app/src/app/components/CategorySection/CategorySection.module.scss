@@ -1,0 +1,42 @@
+.categorytitle{
+    text-align: center;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1.5rem;
+}
+
+
+.categorybox {
+    background-color: #C95243;
+    padding: 10px;
+    width: 290px;
+    height: 170px;
+    margin: 40px;
+    border-radius: 6px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #812F2B;
+        cursor: pointer; 
+}
+
+.categorylabel{
+    font-family: 'Exo 2', sans-serif;
+    color: white;
+    font-weight: 600;
+    font-size: 32px;
+}
+}
+  
+  
+  .categorycontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 1500px; 
+    margin: 0 auto; 
+  }
+  

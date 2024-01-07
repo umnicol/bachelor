@@ -1,0 +1,50 @@
+.carrousel_h2{
+  text-align: center;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  background-color: #F1EFEB;
+  padding: 35px;
+}
+
+.carrousel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 1500px; 
+    margin: 0 auto; 
+  
+    img {
+      max-width: 100%;
+      height: auto;
+      padding: 20px;
+    }
+  
+    button {
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: #A9E3F6;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Exo 2', sans-serif;
+    text-transform: uppercase;
+
+  
+      &:hover {
+        background-color:#00b8f5;
+      }
+  
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+  
+    }
+  }
+  
