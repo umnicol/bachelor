@@ -63,11 +63,10 @@
         .CardElement {
           padding: 15px !important;
           border: none;
-          font-size: 16px; /* Adjust font size as needed */
-          color: #112526; /* Text color */
+          font-size: 16px; 
+          color: #112526; 
         }
   
-        /* Style the individual CardElement fields */
         .StripeElement {
           padding: 8px;
           height: 35px;
@@ -83,8 +82,8 @@
     .planDetailsContainer {
       background-color: #F2F2F2;
       border-radius: 8px; 
-      padding: 18px; /* Adjust the padding as needed */
-      margin-bottom: 20px; /* Adjust the margin-bottom as needed */
+      padding: 18px; 
+      margin-bottom: 20px; 
       display: flex;
       justify-content: space-between;
       align-items: center; 

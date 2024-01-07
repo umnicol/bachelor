@@ -1,36 +1,57 @@
-"use client"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './SignInForm.module.scss';
 import Button from '../Button/Button';
 import Link from 'next/link';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { firebaseApp } from '../../../../firebaseConfig';
 
+interface SignInFormProps {
+  initialEmail?: string;
+  onSignIn: (enteredEmail: string, enteredPassword: string) => void;
+}
 
-const SignInForm: React.FC = () => {
-  const [username, setUsername] = useState<string>('');
+const SignInForm: React.FC<SignInFormProps> = ({ initialEmail, onSignIn }) => {
+  const [username, setUsername] = useState<string>(initialEmail || '');
   const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
 
+  const auth = getAuth(firebaseApp);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Perform authentication logic
-    console.log('Username:', username);
-    console.log('Password:', password);
-
-    // Clear the form fields after submission
-    setUsername('');
-    setPassword('');
+    try {
+      setError(null);
+      await signInWithEmailAndPassword(auth, username, password);
+      setUsername('');
+      setPassword('');
+      // Pass the entered email back to the parent component (SignIn)
+      onSignIn(username, password);
+    } catch (error) {
+      console.error('Firebase Auth Error:', error);
+      switch (error.code) {
+        case 'auth/invalid-credential':
+          setError('Wrong credentials. Please check your email and password.');
+          break;
+        default:
+          setError('An error occurred during sign-in. Please try again later.');
+          break;
+    }
+    }
   };
+
+  useEffect(() => {
+    setUsername(initialEmail || '');
+  }, [initialEmail]);
 
   return (
     <div className={styles.signinformContainer}>
       <form onSubmit={handleSubmit}>
-        <p></p>
-      <h2>Sign in</h2>
+        <h2>Sign in</h2>
         <input
           type="text"
           id="username"
-          placeholder='E-mail'
+          placeholder="E-mail"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -39,19 +60,21 @@ const SignInForm: React.FC = () => {
         <input
           type="password"
           id="password"
-          placeholder='Password'
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
 
-        <Button label={'Sign In'} />
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+
+        <Button label="Sign In" />
 
         <p>
           Not a member yet?{' '}
           <span>
-          <Link href={'/signup'}>Sign up NOW</Link>         
-           </span>
+            <Link href="/signup">Sign up NOW</Link>
+          </span>
         </p>
       </form>
     </div>

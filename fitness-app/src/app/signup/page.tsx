@@ -8,7 +8,7 @@ export default function SignUp() {
     <>
       <Head>
         <title>Laurafit - Sign In</title>
-        <meta name="description" content="nieco sem" />
+        <meta name="description" content="Sign up into the Laurafit platform" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <SignUpForm/>
