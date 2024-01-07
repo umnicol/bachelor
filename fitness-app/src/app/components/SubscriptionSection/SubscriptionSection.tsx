@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { FC } from 'react';
+import Image from 'next/image';
 import styles from './SubscriptionSection.module.scss';
 
-const SubscriptionSection: React.FC = () => {
- return (
+interface SubscriptionSectionProps {
+  imageSrc: string;
+  
+ }
+ const SubscriptionSection: FC<SubscriptionSectionProps> = ({ imageSrc}) => {
+  return (
     <div className={styles.subscriptionsection}>
-      <h2>SUBSCRIPTION YOUR BODY
+      <Image className={styles.subscriptionimage} src={imageSrc} alt="Subscription image" width={540} height={500} />
+      <h2>SUBSCRIPTION YOUR BODY <br></br>
         WILL THANK YOU FOR
       </h2>
       <p>

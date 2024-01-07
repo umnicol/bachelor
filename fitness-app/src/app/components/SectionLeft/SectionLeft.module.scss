@@ -7,10 +7,10 @@
     
      h2 {
       position: absolute;
-      top: 1800px;
+      top: 120px;
        right: 3%;
        width: 40%;
-        font-size: 2.6rem;
+        font-size: 2.8rem;
         font-weight: bold;
         margin-bottom: 1rem;
         text-align: right;
@@ -19,10 +19,11 @@
     
      p {
       position: absolute;
-       top: 1920px;
+       top: 260px;
        right: 3%;
        width: 60%;
         font-size: 1.1rem;
+        font-weight: 300;
         line-height: 1.5;
         text-align: right;
         max-width: 500px;
@@ -34,6 +35,6 @@
 
     .sectionimageleft{
         position: absolute;
-        top: 1800px;
+        top: 65px;
         left: 0%; 
     }

@@ -3,24 +3,24 @@
      display: flex;
      flex-direction: column;
      font-family: 'Exo 2', sans-serif;
-     height: 367px;
+     height: 375px;
     
      h2 {
       position: absolute;
-      top: 1400px;
-       left: 3%;
+      top: 120px;
+       left: 5%;
        width: 40%;
-        font-size: 2.6rem;
+        font-size: 2.8rem;
         font-weight: bold;
         margin-bottom: 1rem;
         text-align: left;
-        color: black;
+      color: black;
      }
     
      p {
       position: absolute;
-       top: 1515px;
-       left: 3%;
+       top: 260px;
+       left: 5%;
        width: 60%;
         font-size: 1.1rem;
         line-height: 1.5;
@@ -29,11 +29,13 @@
         margin-bottom: 1rem;
         color: black;
         font-family: 'Exo 2', sans-serif;
+        font-weight: 300;
      }
+
     }
 
     .sectionimage{
         position: absolute;
-        top: 1400px;
+        top: 0px;
         right: 0%; 
     }

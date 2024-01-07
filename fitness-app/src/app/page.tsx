@@ -1,13 +1,16 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import CarrouselSection from './components/CarrouselSection/CarrouselSection'
+import CategorySection from './components/CategorySection/CategorySection'
+import FollowUs from './components/FollowUs/FollowUs'
+import HeaderMainPage from './components/HeaderMainPage/HeaderMainPage'
 import MainHeader from './components/MainHeader/MainHeader'
+import MotivationSection from './components/MotivationSection/MotivationSection'
 import NavBar from './components/NavBar/NavBar'
+import PricingPlan from './components/PricingPlan/PricingPlan'
+import RecipeSection from './components/RecipesSection/RecipeSection'
 import SectionLeft from './components/SectionLeft/SectionLeft'
-import SectionRight from './components/SectionRight/SectionRight'
 import SubscriptionSection from './components/SubscriptionSection/SubscriptionSection'
-import Section from './components/SubscriptionSection/SubscriptionSection'
-import styles from './page.module.css'
-
 
 export default function Home() {
   return (
@@ -19,7 +22,6 @@ export default function Home() {
       </Head>
       <NavBar label={''}/>
       <MainHeader/>
-      
     </>
   )
 }
