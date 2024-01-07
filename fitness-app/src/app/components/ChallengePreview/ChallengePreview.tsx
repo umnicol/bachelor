@@ -4,6 +4,7 @@ import styles from './ChallengePreview.module.scss';
 import { getChallengesData } from '../../services/challengesAPI';
 import Button from '../Button/Button';
 import { Challenge } from '@/app/interfaces/challengeInterface';
+import Link from 'next/link';
 
 interface ChallengePreviewProps {
     video: Challenge;
@@ -54,7 +55,8 @@ const ChallengePreview: React.FC<ChallengePreviewProps> = ({ video }) => {
           Fitness level: <br /> <strong>{video.fitnessLevel}</strong>
         </p>
         <div className={styles.buttonContainer}>
-        <Button label={'Start Now'}></Button>
+        <Link href={`/challenge`}>              <Button label={'Start Now'}></Button>
+          </Link>
         </div>
       </div>
     </div>

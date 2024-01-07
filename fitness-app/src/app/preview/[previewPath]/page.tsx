@@ -8,7 +8,7 @@ import ChallengeInformation from '@/app/components/ChallengeInformation/Challeng
 import { auth } from '../../../../firebaseConfig';
 import NavBar from '../../components/NavBar/NavBar'; // Import NavBar component
 
-const PreviewPage: React.FC = () => {
+const Preview: React.FC = () => {
   const [challengesData, setChallengesData] = useState<Challenge[]>([]);
   const [loading, setLoading] = useState(true);
   const [previewPath, setPreviewPath] = useState<string | null>(null);
@@ -70,4 +70,4 @@ const PreviewPage: React.FC = () => {
   );
 };
 
-export default PreviewPage;
+export default Preview;
