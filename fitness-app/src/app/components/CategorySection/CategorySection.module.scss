@@ -31,6 +31,8 @@
     color: white;
     font-weight: 600;
     font-size: 32px;
+    border-bottom: none !important;
+    text-decoration: none !important;
 
 
 }
@@ -44,5 +46,12 @@
     max-width: 1500px; 
     margin: 0 auto; 
     padding-bottom: 60px ;
+
+    a {
+      text-decoration: none;
+      color: #112526; 
+      display: flex;
+      align-items: center;
+    }
   }
   
