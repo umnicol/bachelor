@@ -63,7 +63,8 @@ const SignUpPlan: React.FC<SignUpPlanProps> = ({ onNextStep, onSelectPlan }) => 
             >
               {plan.title}
             </h3>
-            <p>{selectedPriceDuration === 'monthly' ? `${plan.monthlyPrice} DKK` : `${plan.yearlyPrice} DKK`}</p>            <ul>
+            <p>{selectedPriceDuration === 'monthly' ? `${plan.monthlyPrice} DKK` : `${plan.yearlyPrice} DKK`}</p>            
+            <ul>
               {plan.description.map((bullet, bulletIndex) => (
                 <li key={bulletIndex}>
                   <span role="img" aria-label="check-mark">
