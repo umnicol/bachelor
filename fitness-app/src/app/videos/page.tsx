@@ -6,11 +6,7 @@ import { getChallengesData } from '../services/challengesAPI';
 import styles from './page.module.scss';
 import { auth } from '../../../firebaseConfig';
 import NavBar from '../components/NavBar/NavBar';
-
-interface Challenge {
-  title: string;
-  previewPath: string;
-}
+import { Challenge } from '@/app/interfaces/challengeInterface';
 
 const Videos: React.FC = () => {
   const [challengesData, setChallengesData] = useState<Challenge[]>([]);

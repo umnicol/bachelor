@@ -9,29 +9,39 @@ import RecipeSection from '../components/RecipesSection/RecipeSection';
 import MotivationSection from '../components/MotivationSection/MotivationSection';
 import FollowUs from '../components/FollowUs/FollowUs';
 import { auth } from '../../../firebaseConfig';
+import { getChallengesData } from '../services/challengesAPI';
+import { Challenge } from '../interfaces/challengeInterface';
 
-const MainPage: React.FC = () => {
-  const [user, setUser] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user);
-      setLoading(false);
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (!user) {
-    return <p>Please sign in to access the main page.</p>;
-  }
+  const MainPage: React.FC = () => {
+    const [challengesData, setChallengesData] = useState<Challenge[]>([]);
+    const [user, setUser] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        const data = (await getChallengesData()) as Challenge[];
+        setChallengesData(data);
+        setLoading(false);
+      };
+  
+      fetchData();
+  
+      const unsubscribe = auth.onAuthStateChanged((user) => {
+        setUser(user);
+      });
+  
+      return () => {
+        unsubscribe();
+      };
+    }, []);
+  
+    if (loading) {
+      return <p>Loading...</p>;
+    }
+  
+    if (!user) {
+      return <p>Please sign in to access videos.</p>;
+    }
 
   return (
     <>
@@ -42,7 +52,7 @@ const MainPage: React.FC = () => {
       </Head>
       <NavBar isLoggedIn={true}/>
       <HeaderMainPage/>
-      <CarrouselSection/>
+      <CarrouselSection videos={challengesData}/>
       <CategorySection/>
       <RecipeSection imageUrl={'/recipesphoto.png'}/>
       <MotivationSection imageUrl={'/progresspic.png'}/>

@@ -1,43 +1,52 @@
-"use client"
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './CarrouselSection.module.scss';
+import { Challenge } from '@/app/interfaces/challengeInterface';
+import VideoCard from '../VideoCard/VideoCard';
 
-const CarrouselSection: React.FC = () => {
-  const images = [
-    '/Group21.png',
-    '/Group22.png',
-    '/Group23.png',
-    '/Group24.png',
-    '/Group25.png',
-  ];
+interface CarrouselSectionProps {
+  videos: Challenge[] 
+}
 
+const CarrouselSection: React.FC<CarrouselSectionProps> = ({ videos }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [videos]);
+
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? videos!.length - 1 : prevIndex - 1));
   };
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+    setCurrentIndex((prevIndex) => (prevIndex === videos!.length - 1 ? 0 : prevIndex + 1));
   };
+
+  if (!videos || videos.length === 0) {
+    return <p>Loading...</p>;
+  }
+
+  const indicesToShow = [
+    (currentIndex - 2 + videos.length) % videos.length,
+    (currentIndex - 1 + videos.length) % videos.length,
+    currentIndex,
+    (currentIndex + 1) % videos.length,
+    (currentIndex + 2) % videos.length,
+  ];
 
   return (
     <div className={styles.carrousel_h2}>
-    <h2>EXPLORE MORE CHALLENGES</h2>
-    <div className={styles.carrousel}>
-      <button onClick={goToPrevious}>Previous</button>
-      <Link href="/videos">
-        <img src={images[currentIndex]} alt={`Image ${currentIndex}`} /> 
-     </Link>
-     
-      <img src={'/Group22.png'}/>
-      <img src={'/Group23.png'}/>
-      <img src={'/Group24.png'}/>
-      <img src={'/Group25.png'}/>
-      
-      <button onClick={goToNext}>Next</button>
-    </div>
+      <h2>EXPLORE MORE CHALLENGES</h2>
+      <div className={styles.carrousel}>
+        <button onClick={goToPrevious}>Previous</button>
+        {indicesToShow.map((index) => (
+          <Link key={index} href="/videos">
+            <VideoCard video={videos[index]} />
+          </Link>
+        ))}
+        <button onClick={goToNext}>Next</button>
+      </div>
     </div>
   );
 };
