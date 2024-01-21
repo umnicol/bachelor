@@ -47,7 +47,26 @@
     margin-right: 80px;
     display: flex;
     flex-direction: column;
-    
+
+    .recipeImages {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+
+      .recipeImage {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+
+        img {
+          width: 200px;
+          height: 100px;
+          object-fit: cover;
+        }
+      }
+    }
+  
     h2 {
       font-family: 'obvia-narrow', sans-serif;
       font-weight: 900;

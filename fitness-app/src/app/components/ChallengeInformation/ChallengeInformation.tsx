@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './ChallengeInformation.module.scss';
 import { getChallengesData } from '../../services/challengesAPI';
 import Button from '../Button/Button';
@@ -7,14 +7,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebook, faTiktok } from '@fortawesome/free-brands-svg-icons';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import { getRecipesData } from '@/app/services/recipesAPI';
+import Image from 'next/image';
+import { Recipe } from '@/app/interfaces/recipesInterface';
 
 interface ChallengeInformationProps {
   video: Challenge;
 }
 
 const ChallengeInformation: React.FC<ChallengeInformationProps> = ({ video }) => {
+  const [preWorkoutRecipes, setPreWorkoutRecipes] = useState<Recipe[]>([]);
+  const [postWorkoutRecipes, setPostWorkoutRecipes] = useState<Recipe[]>([]);
+
   useEffect(() => {
-    const fetchChallengesData = async () => {
+    const fetchData = async () => {
       try {
         const challengesData = await getChallengesData();
         const matchingChallenge = challengesData.find((challenge) => challenge.title === video.title);
@@ -22,15 +28,22 @@ const ChallengeInformation: React.FC<ChallengeInformationProps> = ({ video }) =>
         if (!matchingChallenge) {
           console.error(`No matching challenge found for title: ${video.title}`);
         }
+
+        const recipesData = await getRecipesData();
+
+        const shuffledRecipes = recipesData.sort(() => Math.random() - 0.5);
+        const preWorkoutRecipes = shuffledRecipes.filter(recipe => recipe.mealType === 'pre workout').slice(0, 4);
+        const postWorkoutRecipes = shuffledRecipes.filter(recipe => recipe.mealType === 'post workout').slice(0, 4);
+
+        setPreWorkoutRecipes(preWorkoutRecipes);
+        setPostWorkoutRecipes(postWorkoutRecipes);
       } catch (error) {
-        console.error('Error fetching challenges data:', error);
+        console.error('Error fetching data:', error);
       }
     };
 
-    fetchChallengesData();
+    fetchData();
   }, [video.title]);
-
-  console.log('Matching challenge:', video);
 
   return (
     <div className={styles.videoInfoLayout}>
@@ -49,15 +62,30 @@ const ChallengeInformation: React.FC<ChallengeInformationProps> = ({ video }) =>
         </div>
       </div>
       <div className={styles.recipeContainer}>
-      <h2>Fuel Yourself Properly</h2>
-      <p>Unlock peak performance with smart nutrition. Discover the secrets of pre and post-workout fueling for faster results. Hungry for success? Gonna fuel it together!</p>
-      <div className={styles.recipeSection}>
+        <h2>Fuel Yourself Properly</h2>
+        <p>Unlock peak performance with smart nutrition. Discover the secrets of pre and post-workout fueling for faster results. Hungry for success? Gonna fuel it together!</p>
+        <div className={styles.recipeSection}>
           <h4>Pre workout meals</h4>
+          <div className={styles.recipeImages}>
+            {preWorkoutRecipes.map(recipe => (
+              <div key={recipe.title} className={styles.recipeImage}>
+                <Image src={recipe.imageURL} alt={recipe.title} width={200} height={150} />
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className={styles.recipeSection}>
-          <h4>post workout meals</h4>
+          <h4>Post workout meals</h4>
+          <div className={styles.recipeImages}>
+            {postWorkoutRecipes.map(recipe => (
+              <div key={recipe.title} className={styles.recipeImage}>
+                <Image src={recipe.imageURL} alt={recipe.title} width={200} height={150} />
+              </div>
+            ))}
+          </div>
         </div>
+
 
         <div className={styles.hungryForMore}>
         <Link href="/recipes">
