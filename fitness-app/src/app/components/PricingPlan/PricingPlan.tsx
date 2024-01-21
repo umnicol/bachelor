@@ -12,17 +12,17 @@ const PricingPlan: React.FC = () => {
   const plans: PricingPlans[] = [
     {
       name: 'BASIC PLAN',
-      price: 10.99,
+      price: 59,
       features: ['10 available quides', 'Limited recipes', 'No check-ins'],
     },
     {
       name: 'PRO PLAN',
-      price: 19.99,
+      price: 99,
       features: ['20 available guides', 'Full access to recipes', 'Check-ins available'],
     },
     {
       name: 'PREMIUM PLAN',
-      price: 29.99,
+      price: 120,
       features: ['All guides available', 'Free meal plan', 'Check-ins available'],
     },
   ];
@@ -35,7 +35,7 @@ const PricingPlan: React.FC = () => {
       {plans.map((plan, index) => (
         <div key={index} className={styles.pricingplan}>
           <h2>{plan.name}</h2>
-          <p>${plan.price} / month</p>
+          <p>{plan.price} DKK / month</p>
           <ul>
             {plan.features.map((feature, idx) => (
               <li key={idx}>{feature}</li>

@@ -54,7 +54,6 @@ export const getCheckoutUrl = async (
       expYear: cardDetails.expYear,
       cvc: cardDetails.cvc,
     },
-    // Add any other relevant data for your checkout session
   });
 
   return new Promise<string>((resolve, reject) => {
@@ -91,8 +90,7 @@ export const getPortalUrl = async (app: FirebaseApp): Promise<string> => {
       customerId: user?.uid,
       returnUrl: window.location.origin,
     });
-
-    // Add a type to the data
+    
     dataWithUrl = data as { url: string };
     console.log("Reroute to Stripe portal: ", dataWithUrl.url);
   } catch (error) {
