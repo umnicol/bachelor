@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import styles from './MainHeader.module.scss';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface MainHeaderProps {
   image?: string;
@@ -19,7 +20,15 @@ const MainHeader: React.FC<MainHeaderProps> = ({ image = '/laurafit-background.j
   };
 
   return (
-    <header className={styles.header} style={{ backgroundImage: `url(${image})` }}>
+    <header className={styles.header}>
+      <Image
+        src={image}
+        alt="Header Background"
+        layout="fill"
+        objectFit="cover"
+        className={styles.backgroundImage}
+      />
+
       <h2 className={styles.mainheader_h2}>LETS REACH YOUR GOALS <br></br> TOGETHER</h2>
 
       <form onSubmit={handleSubmit}>
@@ -34,9 +43,9 @@ const MainHeader: React.FC<MainHeaderProps> = ({ image = '/laurafit-background.j
           required
         />
         <Link href={`/signin?email=${encodeURIComponent(email)}`} passHref>
-            <button className={styles.mainheader_button} type="submit">
-             Sign In
-            </button>
+          <button className={styles.mainheader_button} type="submit">
+            Sign In
+          </button>
         </Link>
       </form>
     </header>
@@ -44,3 +53,4 @@ const MainHeader: React.FC<MainHeaderProps> = ({ image = '/laurafit-background.j
 };
 
 export default MainHeader;
+
