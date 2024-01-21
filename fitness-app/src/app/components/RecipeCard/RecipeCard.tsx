@@ -2,12 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import styles from './RecipeCard.module.scss';
 import Link from 'next/link';
+import { Recipe } from '@/app/interfaces/recipesInterface';
 
 export interface RecipeCardProps {
-    recipe: {
-        title: string;
-        imageURL: string;
-      };
+    recipe: Recipe;
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
