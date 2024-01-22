@@ -5,7 +5,7 @@ import { firebaseApp, auth } from '../../../../firebaseConfig';
 import { getCheckoutUrl } from '@/app/stripePayment';
 
 interface SignUpCardProps {
-  onSubmit?: (formData: CardFormData) => void;
+  onSubmit?: (formData: CardFormData) => void; //void means it does not have any return value
   selectedPlanDetails: { title: string; price: number; duration: 'monthly' | 'yearly' } | null;
   onComplete?: () => void;
   onChangePlan?: () => void;
@@ -26,10 +26,10 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
+    switch (name) { //it is a statment that handles different input fields based on their name attributes 
+      case 'name': //used to define different branches of code based on the value expression
+        setName(value); //depending on the input fields it updates the variable to the new value
+        break; //used to ecit the switch statment after the code in case is executed
       case 'cardNumber':
         setCardNumber(value);
         break;
@@ -53,7 +53,7 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
     e.preventDefault();
 
     try {
-      onSubmit &&
+      onSubmit && //checks of onSubmit prop exists and if it is true it is invoked with an object containig form data
         onSubmit({
           name,
           cardNumber,
@@ -82,6 +82,8 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
       console.error('Error handling submit:', error);
     }
   };
+
+  //represents the asynchronous handling of a form submission. It calls a function (getCheckoutUrl) to obtain a checkout URL for payment processing, logs the URL to the console, redirects the user to '/mainpage' upon success, and handles any errors that may occur during the process by logging them to the console
 
   return (
     <div className={styles.signupcardContainer}>

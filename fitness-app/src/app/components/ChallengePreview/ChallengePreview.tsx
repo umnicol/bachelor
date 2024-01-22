@@ -17,7 +17,7 @@ const ChallengePreview: React.FC<ChallengePreviewProps> = ({ video }) => {
       try {
         const challengesData = await getChallengesData();
         const matchingChallenge = challengesData.find((challenge) => challenge.previewPath === video.previewPath);
-
+//fetches the data and tries to find a matching challenge on the previewPath property of each challnge
         if (matchingChallenge) {
           console.log('Matching challenge:', matchingChallenge);
 
@@ -33,7 +33,7 @@ const ChallengePreview: React.FC<ChallengePreviewProps> = ({ video }) => {
 
     fetchChallengesData();
   }, [video.previewPath]);
-
+// re-run if the previewPath value changes
   console.log('Matching challenge:', video);
   console.log('imageUrl:', imageUrl);
 

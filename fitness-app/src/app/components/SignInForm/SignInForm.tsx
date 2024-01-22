@@ -8,24 +8,24 @@ import { firebaseApp } from '../../../../firebaseConfig';
 interface SignInFormProps {
   initialEmail?: string;
   onSignIn: (enteredEmail: string, enteredPassword: string) => void;
-}
+} //function called when the user submits the form
 
 const SignInForm: React.FC<SignInFormProps> = ({ initialEmail, onSignIn }) => {
   const [username, setUsername] = useState<string>(initialEmail || '');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-
+//manages the state of username, password and error that thair initial value is null of the type string
   const auth = getAuth(firebaseApp);
-
+//function to get athentication from firebase
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+//asynchronous function that handles form submission
     try {
-      setError(null);
+      setError(null); //to clear previous error messages
       await signInWithEmailAndPassword(auth, username, password);
       setUsername('');
       setPassword('');
-      // Pass the entered email back to the parent component (SignIn)
+      // sign-in with the provided username and pasword using Firebase function and clears inputs for secutirty reasons
       onSignIn(username, password);
     } catch (error) {
       console.error('Firebase Auth Error:', error);
@@ -43,7 +43,7 @@ const SignInForm: React.FC<SignInFormProps> = ({ initialEmail, onSignIn }) => {
   useEffect(() => {
     setUsername(initialEmail || '');
   }, [initialEmail]);
-
+//to update username if initialEmail prop changes
   return (
     <div className={styles.signinformContainer}>
       <form onSubmit={handleSubmit}>
