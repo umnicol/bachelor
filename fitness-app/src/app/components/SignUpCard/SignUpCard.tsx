@@ -35,7 +35,6 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
         break;
       case 'expiryDate':
         const cleanedValue = value.replace(/\D/g, '');
-        // Format as MM/YY
         const formattedValue =
           cleanedValue.length >= 2 ? `${cleanedValue.slice(0, 2)}/${cleanedValue.slice(2, 4)}` : cleanedValue;
 
@@ -63,7 +62,7 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
 
       onComplete && onComplete();
 
-      const checkoutUrl = await getCheckoutUrl(
+      /*const checkoutUrl = await getCheckoutUrl(
         firebaseApp,
         selectedPlanDetails?.title || 'PREMIUM',
         selectedPlanDetails?.duration || 'monthly',
@@ -75,11 +74,17 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
           cvc,
         }
       );
+      console.log(checkoutUrl);*/
 
-      console.log(checkoutUrl);
       window.location.href = '/mainpage';
     } catch (error) {
       console.error('Error handling submit:', error);
+    }
+  };
+
+  const handlePlanChange = () => {
+    if (onChangePlan && typeof onChangePlan === 'function') {
+      onChangePlan();
     }
   };
 
@@ -120,6 +125,18 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
 
         <Button label={'Start Membership'} onClick={handleSubmit} />
       </form>
+
+      {selectedPlanDetails && (
+        <div className={styles.planDetailsContainer}>
+          <p>
+            {selectedPlanDetails.title} <br /> <strong>{selectedPlanDetails.price} DKK</strong>
+            <strong>/{selectedPlanDetails.duration}</strong>
+          </p>
+          <span className={styles.changePlanText} onClick={handlePlanChange}>
+            Change
+          </span>
+        </div>
+      )}
     </div>
   );
 };

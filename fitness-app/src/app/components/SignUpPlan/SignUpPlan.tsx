@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import styles from './SignUpPlan.module.scss';
 import Button from '../Button/Button';
+import { PricingPlan, pricingPlans } from '@/app/interfaces/pricingPlansInterface';
 
 interface SignUpPlanProps {
   onNextStep: (selectedPlan: string) => void;
@@ -8,23 +9,15 @@ interface SignUpPlanProps {
 }
 
 const SignUpPlan: React.FC<SignUpPlanProps> = ({ onNextStep, onSelectPlan }) => {
-  const plans = useMemo(() => [
-    { title: 'BASIC', description: ['10 guides', 'Limited recipes', 'No check-ins'], monthlyPrice: 59, yearlyPrice: 410 },
-    { title: 'PRO', description: ['20 guides', 'All recipes', 'Check-ins'], monthlyPrice: 99, yearlyPrice: 690 },
-    { title: 'PREMIUM', description: ['All guides', 'Free meal plan', 'Check-ins'], monthlyPrice: 120, yearlyPrice: 1008 },
-
-  ], []);
-
   const [selectedPriceDuration, setSelectedPriceDuration] = useState<'monthly' | 'yearly'>('monthly');
   const [selectedPlan, setSelectedPlan] = useState<string>('PREMIUM');
 
   useEffect(() => {
-    const defaultPlan = plans.find((plan) => plan.title === selectedPlan);
+    const defaultPlan = pricingPlans.find((plan) => plan.name === selectedPlan);
     if (defaultPlan) {
       onSelectPlan(selectedPlan, selectedPriceDuration === 'monthly' ? defaultPlan.monthlyPrice : defaultPlan.yearlyPrice, selectedPriceDuration);
     }
-  }, [selectedPriceDuration, onSelectPlan, selectedPlan, plans]);
-  
+  }, [selectedPriceDuration, onSelectPlan, selectedPlan]);
 
   const priceDurationChange = (priceDuration: 'monthly' | 'yearly') => {
     setSelectedPriceDuration(priceDuration);
@@ -52,20 +45,20 @@ const SignUpPlan: React.FC<SignUpPlanProps> = ({ onNextStep, onSelectPlan }) => 
           </button>
         </div>
 
-        {plans.map((plan, index) => (
-            <div key={index} className={`${styles.signupplanColumn} ${index === plans.length - 1 ? styles.lastColumn : ''}`}>
+        {pricingPlans.map((plan, index) => (
+          <div key={index} className={`${styles.signupplanColumn} ${index === pricingPlans.length - 1 ? styles.lastColumn : ''}`}>
             <h3
-              className={`${styles.planTitle} ${selectedPlan === plan.title ? styles.selectedPlan : ''}`}
+              className={`${styles.planTitle} ${selectedPlan === plan.name ? styles.selectedPlan : ''}`}
               onClick={() => {
-                setSelectedPlan(plan.title);
-                onSelectPlan(plan.title, selectedPriceDuration === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice, selectedPriceDuration);
+                setSelectedPlan(plan.name);
+                onSelectPlan(plan.name, selectedPriceDuration === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice, selectedPriceDuration);
               }}
             >
-              {plan.title}
+              {plan.name}
             </h3>
             <p>{selectedPriceDuration === 'monthly' ? `${plan.monthlyPrice} DKK` : `${plan.yearlyPrice} DKK`}</p>            
             <ul>
-              {plan.description.map((bullet, bulletIndex) => (
+              {plan.features.map((bullet, bulletIndex) => (
                 <li key={bulletIndex}>
                   <span role="img" aria-label="check-mark">
                     ✔

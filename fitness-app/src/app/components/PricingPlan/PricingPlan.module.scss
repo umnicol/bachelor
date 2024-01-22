@@ -12,7 +12,7 @@ h2 {
 }
 p{
     font-size: 1.4rem;
-    margin-bottom: 80px;
+    margin-bottom: 30px;
     text-transform: uppercase;
 }
 }
@@ -60,26 +60,82 @@ p{
       }
   
       button {
-    display: inline-block;
-    margin-top: 50px;
-    background-color: #C95243;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    text-align: center;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-family: 'Exo 2', sans-serif;
-    width: 150px;
-    height: 50px;
-  
-    &:hover,
-    &:focus {
-      background-color: #812F2B;
+      display: inline-block;
+      margin-top: 50px;
+      background-color: #C95243;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: 'Exo 2', sans-serif;
+      width: 150px;
+      height: 50px;
+    
+      &:hover,
+      &:focus {
+        background-color: #812F2B;
+          }
         }
-      }
     }
   }
+
+  .pricedurationSwitch {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+
+  .pricedurationButton {
+    font-weight: 500;
+    background-color: #E9D5C9;
+    color: #112526;
+    padding: 10px 20px; 
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: #812F2B;
+      color: white;
+
+      p {
+        color: white;
+      }
+    }
+
+    &.selectedPriceDuration {
+      background-color: #C95243;
+      color: white;
+      border-radius: 5px 5px 0 0;
+
+      p {
+        color: white;
+      }
+    }
+
+    &:first-child {
+      border-radius: 5px 0 0 5px;
+    }
+
+    &:last-child {
+      border-radius: 0 5px 5px 0;
+      padding-top: 10px;
+    }
+
+    p {
+      font-size: 12px;
+      margin-top: 2px;
+      color: #C95243;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+}
   

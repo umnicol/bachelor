@@ -51,16 +51,12 @@ const SignUpForm: React.FC = () => {
         console.log('Selected Payment Method:', selectedPaymentMethod);
         console.log('Starting handleCardSubmit');
   
-        // Additional logic for handling card submission, if needed
-  
-        // Check if all necessary information is available
         if (!email || !password || !selectedPlanDetails) {
           setError('Please provide all necessary information.');
           console.error('Error: Please provide all necessary information.');
           return;
         }
-  
-        // Check if the user has selected a plan
+
         if (!selectedPlan) {
           setError('Please select a subscription plan.');
           console.error('Error: Please select a subscription plan.');
@@ -76,21 +72,19 @@ const SignUpForm: React.FC = () => {
           console.log('After createUserWithEmailAndPassword');
           const user = userCredential.user;
   
-          // Add user data to Firestore
           const firestore = getFirestore(firebaseApp);
           const usersCollection = collection(firestore, 'users');
           console.log('Before addDoc');
           await addDoc(usersCollection, {
             email: user?.email,
             subscriptions: {
-              title: selectedPlanDetails.title || 'FREE',
-              price: selectedPlanDetails.price || 0, // Default to 0 or provide a default value as needed
+              title: selectedPlanDetails.title || 'BASIC',
+              price: selectedPlanDetails.price || 59,
               duration: selectedPlanDetails.duration || 'monthly',
             },
           });
           console.log('After addDoc');
   
-          // Proceed to the next step
           setCurrentStep((prevStep) => prevStep + 1);
         } catch (error) {
           const errorCode = error.code;
