@@ -82,6 +82,12 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
     }
   };
 
+  const handlePlanChange = () => {
+    if (onChangePlan && typeof onChangePlan === 'function') {
+      onChangePlan();
+    }
+  };
+
   return (
     <div className={styles.signupcardContainer}>
       <form onSubmit={handleSubmit}>
