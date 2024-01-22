@@ -27,20 +27,14 @@ const CarrouselSection: React.FC<CarrouselSectionProps> = ({ videos }) => {
     return <p>Loading...</p>;
   }
 
-  const indicesToShow = [
-    (currentIndex - 2 + videos.length) % videos.length,
-    (currentIndex - 1 + videos.length) % videos.length,
-    currentIndex,
-    (currentIndex + 1) % videos.length,
-    (currentIndex + 2) % videos.length,
-  ];
+  const videosToShow = Array.from({ length: 5 }, (_, i) => (currentIndex + i - 2 + videos.length) % videos.length);
 
   return (
     <div className={styles.carrousel_h2}>
       <h2>EXPLORE MORE CHALLENGES</h2>
       <div className={styles.carrousel}>
         <button onClick={goToPrevious}>Previous</button>
-        {indicesToShow.map((index) => (
+        {videosToShow.map((index) => (
           <Link key={index} href="/videos">
             <VideoCard video={videos[index]} />
           </Link>

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styles from './SignUpForm.module.scss';
 import Button from '../Button/Button';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { firebaseApp, auth } from '../../../../firebaseConfig';
 import SignUpPlan from '../SignUpPlan/SignUpPlan';
@@ -41,9 +41,49 @@ const SignUpForm: React.FC = () => {
     setPaymentComponent(null); // Reset the payment component when changing the plan
   };
 
-  const handlePayPalSuccess = () => {
-    setCurrentStep((prevStep) => prevStep + 1);
-  };
+  const handlePayPalSuccess = useCallback(async () => {
+      try {
+      console.log('Handling PayPal success...');
+  
+      if (!email || !password || !selectedPlanDetails) {
+        setError('Please provide all necessary information.');
+        console.error('Error: Please provide all necessary information.');
+        return;
+      }
+  
+      if (!selectedPlan) {
+        setError('Please select a subscription plan.');
+        console.error('Error: Please select a subscription plan.');
+        return;
+      }
+  
+      const auth = getAuth(firebaseApp);
+  
+      try {
+        setError(null);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+  
+        const firestore = getFirestore(firebaseApp);
+        const usersCollection = collection(firestore, 'users');
+
+        await addDoc(usersCollection, {
+          email: user?.email,
+          subscriptions: {
+            title: selectedPlanDetails.title,
+            price: selectedPlanDetails.price,
+            duration: selectedPlanDetails.duration,
+          },
+        });
+
+        window.location.href = '/signin';
+      } catch (error) {
+        console.error('Error during user creation:', error);
+      }
+    } catch (error) {
+      console.error('Error handling PayPal success:', error);
+    }
+  }, [email, password, selectedPlan, selectedPlanDetails]);
 
   const handleCardSubmit = useCallback(
     async (formData: CardFormData) => {
@@ -67,23 +107,19 @@ const SignUpForm: React.FC = () => {
   
         try {
           setError(null);
-          console.log('Before createUserWithEmailAndPassword');
           const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-          console.log('After createUserWithEmailAndPassword');
           const user = userCredential.user;
   
           const firestore = getFirestore(firebaseApp);
           const usersCollection = collection(firestore, 'users');
-          console.log('Before addDoc');
           await addDoc(usersCollection, {
             email: user?.email,
             subscriptions: {
-              title: selectedPlanDetails.title || 'BASIC',
-              price: selectedPlanDetails.price || 59,
-              duration: selectedPlanDetails.duration || 'monthly',
+              title: selectedPlanDetails.title,
+              price: selectedPlanDetails.price,
+              duration: selectedPlanDetails.duration,
             },
           });
-          console.log('After addDoc');
   
           setCurrentStep((prevStep) => prevStep + 1);
         } catch (error) {
@@ -131,7 +167,7 @@ const SignUpForm: React.FC = () => {
     }
   
     setPaymentComponent(newPaymentComponent);
-  }, [selectedPaymentMethod, selectedPlanDetails, handleCardSubmit]); 
+  }, [selectedPaymentMethod, selectedPlanDetails, handleCardSubmit, handlePayPalSuccess]); 
 
   return (
     <div className={styles.signupformContainer}>

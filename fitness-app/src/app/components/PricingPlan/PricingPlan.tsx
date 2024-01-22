@@ -1,5 +1,3 @@
-// PricingPlan.tsx
-
 import React, { useState } from 'react';
 import styles from './PricingPlan.module.scss';
 import Link from 'next/link';
