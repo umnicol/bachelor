@@ -5,7 +5,7 @@ import { firebaseApp, auth } from '../../../../firebaseConfig';
 import { getCheckoutUrl } from '@/app/stripePayment';
 
 interface SignUpCardProps {
-  onSubmit?: (formData: CardFormData) => void; //void means it does not have any return value
+  onSubmit?: (formData: CardFormData) => void;
   selectedPlanDetails: { title: string; price: number; duration: 'monthly' | 'yearly' } | null;
   onComplete?: () => void;
   onChangePlan?: () => void;
