@@ -1,4 +1,3 @@
-// SignUpMethod.tsx
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import styles from './SignUpMethod.module.scss';
 import Button from '../Button/Button';
@@ -21,11 +20,7 @@ const SignUpMethod: React.FC<SignUpMethodProps> = ({ onNextStep, setSelectedPaym
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Selected Payment Method:', selectedPaymentMethod);
-    // Notify the parent component about the selected payment method
     setSelectedPaymentMethod(selectedPaymentMethod);
-  
-
-    // Proceed to the next step
     onNextStep();
   };
 
