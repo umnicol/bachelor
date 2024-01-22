@@ -25,7 +25,7 @@ const CategorySection: React.FC = () => {
        <Box label="CARDIO" />    
      </Link>
      <Link href="/videos">
-       <Box label="STRENGHT" />    
+       <Box label="STRENGTH" />    
      </Link>
      <Link href="/videos">
        <Box label="HIIT" />    

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import styles from './SignUpPlan.module.scss';
 import Button from '../Button/Button';
+import { PricingPlan, pricingPlans } from '@/app/interfaces/pricingPlansInterface';
 
 interface SignUpPlanProps {
   onNextStep: (selectedPlan: string) => void;
@@ -21,12 +22,11 @@ const SignUpPlan: React.FC<SignUpPlanProps> = ({ onNextStep, onSelectPlan }) => 
 //Represents the currently selected subscription plan. It is initially set to 'PREMIUM'.
 
   useEffect(() => {
-    const defaultPlan = plans.find((plan) => plan.title === selectedPlan);
+    const defaultPlan = pricingPlans.find((plan) => plan.name === selectedPlan);
     if (defaultPlan) {
       onSelectPlan(selectedPlan, selectedPriceDuration === 'monthly' ? defaultPlan.monthlyPrice : defaultPlan.yearlyPrice, selectedPriceDuration);
     }
-  }, [selectedPriceDuration, onSelectPlan, selectedPlan, plans]);
-  
+  }, [selectedPriceDuration, onSelectPlan, selectedPlan]);
 
   const priceDurationChange = (priceDuration: 'monthly' | 'yearly') => {
     setSelectedPriceDuration(priceDuration);
@@ -52,22 +52,22 @@ const SignUpPlan: React.FC<SignUpPlanProps> = ({ onNextStep, onSelectPlan }) => 
             Yearly 
             <p>30% off</p>
           </button>
-        </div> 
-    
-        {plans.map((plan, index) => (
-            <div key={index} className={`${styles.signupplanColumn} ${index === plans.length - 1 ? styles.lastColumn : ''}`}>
+        </div>
+
+        {pricingPlans.map((plan, index) => (
+          <div key={index} className={`${styles.signupplanColumn} ${index === pricingPlans.length - 1 ? styles.lastColumn : ''}`}>
             <h3
-              className={`${styles.planTitle} ${selectedPlan === plan.title ? styles.selectedPlan : ''}`}
+              className={`${styles.planTitle} ${selectedPlan === plan.name ? styles.selectedPlan : ''}`}
               onClick={() => {
-                setSelectedPlan(plan.title);
-                onSelectPlan(plan.title, selectedPriceDuration === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice, selectedPriceDuration);
+                setSelectedPlan(plan.name);
+                onSelectPlan(plan.name, selectedPriceDuration === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice, selectedPriceDuration);
               }}
             >
-              {plan.title}
+              {plan.name}
             </h3>
             <p>{selectedPriceDuration === 'monthly' ? `${plan.monthlyPrice} DKK` : `${plan.yearlyPrice} DKK`}</p>            
             <ul>
-              {plan.description.map((bullet, bulletIndex) => (
+              {plan.features.map((bullet, bulletIndex) => (
                 <li key={bulletIndex}>
                   <span role="img" aria-label="check-mark">
                     ✔

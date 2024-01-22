@@ -35,7 +35,6 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
         break;
       case 'expiryDate':
         const cleanedValue = value.replace(/\D/g, '');
-        // Format as MM/YY
         const formattedValue =
           cleanedValue.length >= 2 ? `${cleanedValue.slice(0, 2)}/${cleanedValue.slice(2, 4)}` : cleanedValue;
 
@@ -63,7 +62,7 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
 
       onComplete && onComplete();
 
-      const checkoutUrl = await getCheckoutUrl(
+      /*const checkoutUrl = await getCheckoutUrl(
         firebaseApp,
         selectedPlanDetails?.title || 'PREMIUM',
         selectedPlanDetails?.duration || 'monthly',
@@ -75,15 +74,13 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
           cvc,
         }
       );
+      console.log(checkoutUrl);*/
 
-      console.log(checkoutUrl);
       window.location.href = '/mainpage';
     } catch (error) {
       console.error('Error handling submit:', error);
     }
   };
-
-  //represents the asynchronous handling of a form submission. It calls a function (getCheckoutUrl) to obtain a checkout URL for payment processing, logs the URL to the console, redirects the user to '/mainpage' upon success, and handles any errors that may occur during the process by logging them to the console
 
   return (
     <div className={styles.signupcardContainer}>
@@ -122,6 +119,18 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
 
         <Button label={'Start Membership'} onClick={handleSubmit} />
       </form>
+
+      {selectedPlanDetails && (
+        <div className={styles.planDetailsContainer}>
+          <p>
+            {selectedPlanDetails.title} <br /> <strong>{selectedPlanDetails.price} DKK</strong>
+            <strong>/{selectedPlanDetails.duration}</strong>
+          </p>
+          <span className={styles.changePlanText} onClick={handlePlanChange}>
+            Change
+          </span>
+        </div>
+      )}
     </div>
   );
 };

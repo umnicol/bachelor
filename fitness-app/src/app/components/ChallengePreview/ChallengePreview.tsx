@@ -20,8 +20,6 @@ const ChallengePreview: React.FC<ChallengePreviewProps> = ({ video }) => {
 //fetches the data and tries to find a matching challenge on the previewPath property of each challnge
         if (matchingChallenge) {
           console.log('Matching challenge:', matchingChallenge);
-
-          //previewPath contains the image URL
           setImageUrl(matchingChallenge.previewPath);
         } else {
           console.error(`No matching challenge found for previewPath: ${video.previewPath}`);

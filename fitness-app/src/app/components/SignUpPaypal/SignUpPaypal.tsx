@@ -80,7 +80,7 @@ const SignUpPaypal: React.FC<SignUpPaypalProps> = ({ onSuccess, selectedPlanDeta
       {selectedPlanDetails && (
         <div className={styles.planDetailsContainer}>
           <p>
-            {selectedPlanDetails.title} <br /> <strong>{selectedPlanDetails.price}</strong>
+            {selectedPlanDetails.title} <br /> <strong>{selectedPlanDetails.price} DKK</strong>
             <strong>/{selectedPlanDetails.duration}</strong>
           </p>
           <span className={styles.changePlanText} onClick={handlePlanChange}>

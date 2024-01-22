@@ -110,6 +110,35 @@
           }
     }
     }
+    .planDetailsContainer {
+      background-color: #F2F2F2;
+      border-radius: 8px; 
+      padding: 18px; 
+      margin-bottom: 20px; 
+      display: flex;
+      justify-content: space-between;
+      align-items: center; 
 
+      p {
+        color: #112526;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        text-transform: none;
+      }
+
+      .changePlanText {
+        color: #C95243; 
+        cursor: pointer;
+        text-decoration: none;
+  
+  
+        &:hover,
+          &:focus {
+            color: #812F2B;
+            cursor: pointer;
+            text-decoration: underline;
+          }
+    }
+    }
   }
   
