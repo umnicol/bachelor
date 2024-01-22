@@ -24,7 +24,7 @@ const ChallengeInformation: React.FC<ChallengeInformationProps> = ({ video }) =>
       try {
         const challengesData = await getChallengesData();
         const matchingChallenge = challengesData.find((challenge) => challenge.title === video.title);
-        //fetches data of the challenge and finds a challenge that matches to the title of the current video
+        
         if (!matchingChallenge) {
           console.error(`No matching challenge found for title: ${video.title}`);
         }
@@ -34,9 +34,9 @@ const ChallengeInformation: React.FC<ChallengeInformationProps> = ({ video }) =>
         const shuffledRecipes = recipesData.sort(() => Math.random() - 0.5);
         const preWorkoutRecipes = shuffledRecipes.filter(recipe => recipe.mealType === 'pre workout').slice(0, 4);
         const postWorkoutRecipes = shuffledRecipes.filter(recipe => recipe.mealType === 'post workout').slice(0, 4);
-        //shuffles the recipes randomly and pick first 4 for a preworkout as well as postworkout
+        
         setPreWorkoutRecipes(preWorkoutRecipes);
-        setPostWorkoutRecipes(postWorkoutRecipes); //uses these functions to update the components state with filtered recipes
+        setPostWorkoutRecipes(postWorkoutRecipes); 
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -44,7 +44,7 @@ const ChallengeInformation: React.FC<ChallengeInformationProps> = ({ video }) =>
 
     fetchData();
   }, [video.title]);
-// will re-run the effect when video title changes
+
   return (
     <div className={styles.videoInfoLayout}>
       <div className={styles.infoContainer}>

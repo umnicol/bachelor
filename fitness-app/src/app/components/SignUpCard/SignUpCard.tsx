@@ -26,10 +26,10 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    switch (name) { //it is a statment that handles different input fields based on their name attributes 
-      case 'name': //used to define different branches of code based on the value expression
-        setName(value); //depending on the input fields it updates the variable to the new value
-        break; //used to ecit the switch statment after the code in case is executed
+    switch (name) { 
+      case 'name': 
+        setName(value); 
+        break; 
       case 'cardNumber':
         setCardNumber(value);
         break;
@@ -52,7 +52,7 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
     e.preventDefault();
 
     try {
-      onSubmit && //checks of onSubmit prop exists and if it is true it is invoked with an object containig form data
+      onSubmit && 
         onSubmit({
           name,
           cardNumber,

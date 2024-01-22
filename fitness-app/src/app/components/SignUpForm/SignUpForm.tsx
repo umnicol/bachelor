@@ -18,7 +18,7 @@ const SignUpForm: React.FC = () => {
   const [selectedPlanDetails, setSelectedPlanDetails] = useState<{ title: string, price: number, duration: 'monthly' | 'yearly' } | null>(null);
   const [paymentComponent, setPaymentComponent] = useState<React.ReactNode | null>(null);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>('Credit Card');
-//sets the initial state of various pieces to manage the form's data
+
   const handleNextStep = () => {
     if (currentStep === 2) {
       setCurrentStep((prevStep) => prevStep + 1);
@@ -30,7 +30,7 @@ const SignUpForm: React.FC = () => {
       setCurrentStep((prevStep) => prevStep + 1);
     }
   };
-//function to handle the navigation between different stepns in a multi-spet form. It checks the current step and updates it accordingingly. 
+ 
   const handlePlanSelection = (selectedPlan: string, price: number, duration: 'monthly' | 'yearly') => {
     setSelectedPlan(selectedPlan);
     setSelectedPlanDetails({ title: selectedPlan, price, duration });
@@ -38,7 +38,7 @@ const SignUpForm: React.FC = () => {
 
   const handleChangePlan = () => {
     setCurrentStep(2);
-    setPaymentComponent(null); // Reset the payment component when changing the plan
+    setPaymentComponent(null); 
   };
 
   const handlePayPalSuccess = () => {

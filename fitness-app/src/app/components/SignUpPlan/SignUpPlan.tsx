@@ -15,11 +15,10 @@ const SignUpPlan: React.FC<SignUpPlanProps> = ({ onNextStep, onSelectPlan }) => 
     { title: 'PREMIUM', description: ['All guides', 'Free meal plan', 'Check-ins'], monthlyPrice: 120, yearlyPrice: 1008 },
 
   ], []);
-//Defines an array of subscription plans using the useMemo hook to memoize the plans.
+
   const [selectedPriceDuration, setSelectedPriceDuration] = useState<'monthly' | 'yearly'>('monthly');
   const [selectedPlan, setSelectedPlan] = useState<string>('PREMIUM');
-//Represents whether the user has selected a monthly or yearly payment duration. It is initially set to 'monthly'.
-//Represents the currently selected subscription plan. It is initially set to 'PREMIUM'.
+
 
   useEffect(() => {
     const defaultPlan = pricingPlans.find((plan) => plan.name === selectedPlan);
