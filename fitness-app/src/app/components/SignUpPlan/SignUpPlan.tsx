@@ -9,8 +9,16 @@ interface SignUpPlanProps {
 }
 
 const SignUpPlan: React.FC<SignUpPlanProps> = ({ onNextStep, onSelectPlan }) => {
+  const plans = useMemo(() => [
+    { title: 'BASIC', description: ['10 guides', 'Limited recipes', 'No check-ins'], monthlyPrice: 59, yearlyPrice: 410 },
+    { title: 'PRO', description: ['20 guides', 'All recipes', 'Check-ins'], monthlyPrice: 99, yearlyPrice: 690 },
+    { title: 'PREMIUM', description: ['All guides', 'Free meal plan', 'Check-ins'], monthlyPrice: 120, yearlyPrice: 1008 },
+
+  ], []);
+
   const [selectedPriceDuration, setSelectedPriceDuration] = useState<'monthly' | 'yearly'>('monthly');
   const [selectedPlan, setSelectedPlan] = useState<string>('PREMIUM');
+
 
   useEffect(() => {
     const defaultPlan = pricingPlans.find((plan) => plan.name === selectedPlan);

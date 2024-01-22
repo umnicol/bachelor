@@ -24,7 +24,7 @@ const ChallengeInformation: React.FC<ChallengeInformationProps> = ({ video }) =>
       try {
         const challengesData = await getChallengesData();
         const matchingChallenge = challengesData.find((challenge) => challenge.title === video.title);
-
+        
         if (!matchingChallenge) {
           console.error(`No matching challenge found for title: ${video.title}`);
         }
@@ -34,9 +34,9 @@ const ChallengeInformation: React.FC<ChallengeInformationProps> = ({ video }) =>
         const shuffledRecipes = recipesData.sort(() => Math.random() - 0.5);
         const preWorkoutRecipes = shuffledRecipes.filter(recipe => recipe.mealType === 'pre workout').slice(0, 4);
         const postWorkoutRecipes = shuffledRecipes.filter(recipe => recipe.mealType === 'post workout').slice(0, 4);
-
+        
         setPreWorkoutRecipes(preWorkoutRecipes);
-        setPostWorkoutRecipes(postWorkoutRecipes);
+        setPostWorkoutRecipes(postWorkoutRecipes); 
       } catch (error) {
         console.error('Error fetching data:', error);
       }

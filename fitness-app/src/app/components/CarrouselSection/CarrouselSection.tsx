@@ -9,7 +9,7 @@ interface CarrouselSectionProps {
 }
 
 const CarrouselSection: React.FC<CarrouselSectionProps> = ({ videos }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0); 
 
   useEffect(() => {
     setCurrentIndex(0);
@@ -24,7 +24,7 @@ const CarrouselSection: React.FC<CarrouselSectionProps> = ({ videos }) => {
   };
 
   if (!videos || videos.length === 0) {
-    return <p>Loading...</p>;
+    return <p>Loading...</p>; 
   }
 
   const videosToShow = Array.from({ length: 5 }, (_, i) => (currentIndex + i - 2 + videos.length) % videos.length);

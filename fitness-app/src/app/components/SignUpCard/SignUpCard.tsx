@@ -5,7 +5,7 @@ import { firebaseApp, auth } from '../../../../firebaseConfig';
 import { getCheckoutUrl } from '@/app/stripePayment';
 
 interface SignUpCardProps {
-  onSubmit?: (formData: CardFormData) => void;
+  onSubmit?: (formData: CardFormData) => void; //void means it does not have any return value
   selectedPlanDetails: { title: string; price: number; duration: 'monthly' | 'yearly' } | null;
   onComplete?: () => void;
   onChangePlan?: () => void;
@@ -26,10 +26,10 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
+    switch (name) { 
+      case 'name': 
+        setName(value); 
+        break; 
       case 'cardNumber':
         setCardNumber(value);
         break;
@@ -52,7 +52,7 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
     e.preventDefault();
 
     try {
-      onSubmit &&
+      onSubmit && 
         onSubmit({
           name,
           cardNumber,
@@ -79,12 +79,6 @@ const SignUpCard: React.FC<SignUpCardProps> = ({ onSubmit, selectedPlanDetails, 
       window.location.href = '/mainpage';
     } catch (error) {
       console.error('Error handling submit:', error);
-    }
-  };
-
-  const handlePlanChange = () => {
-    if (onChangePlan && typeof onChangePlan === 'function') {
-      onChangePlan();
     }
   };
 
