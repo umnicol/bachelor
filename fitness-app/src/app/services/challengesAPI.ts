@@ -22,4 +22,3 @@ export const getChallengesData = async () => {
       return [];
     }
   };
-  //Overall, this code fetches challenge data from a Firestore collection named 'videos' and returns it as an array of Challenge objects. Any errors that occur during this process are logged to the console, and an empty array is returned in such cases.
