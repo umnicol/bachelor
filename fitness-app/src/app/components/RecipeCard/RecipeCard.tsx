@@ -9,7 +9,7 @@ export interface RecipeCardProps {
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
-  return ( //it takes recipecardprops as props and extracts the property recipe from it
+  return ( 
     <div className={styles.videoCard}>
       <Link href={`/preview/${encodeURIComponent(recipe.imageURL)}`}>
         <div className={styles.previewContainer}>
